@@ -5,7 +5,6 @@ import Image from 'next/image';
 export default function Hero() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:py-24 min-h-[calc(100vh-4rem)] grid items-center gap-12 lg:grid-cols-2">
-      {/* <div className="grid items-center gap-12 lg:grid-cols-2"> */}
       <div className="space-y-8">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
           Your Asset <span className="text-[#0095FF]">Guardian</span> Angel
@@ -41,7 +40,6 @@ export default function Hero() {
           />
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 }
