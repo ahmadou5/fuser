@@ -33,7 +33,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-gray-300 transition-colors hover:text-white"
+                  className="text-sm text-gray-300 transition-colors font-medium hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="rounded-lg p-2 text-gray-300 hover:bg-white/10 md:hidden"
+            className="rounded-lg p-2 text-gray-300 hover:bg-white/5 md:hidden"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -65,9 +65,9 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden"
+              className="md:hidden "
             >
-              <div className="flex flex-col gap-4 pt-4">
+              <div className="flex flex-col gap-4  pt-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.label}
