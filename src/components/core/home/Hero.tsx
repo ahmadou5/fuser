@@ -22,12 +22,12 @@ export default function Hero() {
           </Button>
         </div>
       </div>
-      <div className="w-full lg:mx-0 lg:p-0 p-5">
-        <div className="relative mb-2 py-2">
+      <div className="w-full lg:mx-0 ">
+        <div className="relative mt-9 h-[390px] ">
           <Image
             src={HeroBg}
             alt="Mobile app interface"
-            className="object-contain h-auto w-auto absolute top-[50%] lg:mb-1 mb-10 lg:left-[25%] transform translate-y-[-50%]"
+            className="object-contain h-auto w-auto absolute top-[50%] lg:mb-1 mb-20 lg:left-[25%] transform translate-y-[-50%]"
             height={640}
             width={320}
           />
