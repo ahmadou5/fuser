@@ -10,8 +10,9 @@ export default function Hero() {
           Your Asset <span className="text-[#0095FF]">Guardian</span> Angel
         </h1>
         <p className="max-w-xl font-medium text-lg text-gray-300">
-          A secured multichain MPC wallet. simply create a seedless and
-          recoverable wallet account.
+          A secured multichain{" "}
+          <span className="text-[#0095FF]/70 font-bold">MPC</span> wallet.
+          simply create a seedless and recoverable wallet account.
         </p>
         <div className="flex flex-wrap gap-4">
           <Button
