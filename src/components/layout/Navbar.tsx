@@ -1,16 +1,17 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
-import { AnimatePresence } from 'motion/react';
-import * as motion from 'motion/react-client';
-import Link from 'next/link';
-import { useState } from 'react';
+"use client";
+import NavLogo from "@/assets/navLogo.svg";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { AnimatePresence } from "motion/react";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 const navLinks = [
-  { href: '#', label: 'Community' },
-  { href: '#', label: 'Support' },
-  { href: '#', label: 'FAQ' },
+  { href: "#", label: "Community" },
+  { href: "#", label: "Support" },
+  { href: "#", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -22,7 +23,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold text-white">
-            InFuse
+            <Image src={NavLogo} height={230} width={89} alt="logo" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -61,7 +62,7 @@ export default function Navbar() {
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="md:hidden"
