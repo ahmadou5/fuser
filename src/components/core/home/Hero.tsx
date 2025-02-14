@@ -1,8 +1,11 @@
+"use client";
 import HeroBg from "@/assets/hero-bg.svg";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function Hero() {
+  const router = useRouter();
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:py-24 min-h-[calc(100vh-4rem)] grid items-center gap-12 lg:grid-cols-2">
       <div className="space-y-8">
@@ -18,6 +21,7 @@ export default function Hero() {
           <Button
             size="lg"
             className="bg-[#0095FF] font-regular text-white hover:bg-[#0095FF]/90"
+            onClick={() => router.push("/waitlist")}
           >
             Join The Waitlist
           </Button>
