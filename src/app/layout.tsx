@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 
-const mont = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
+const inter = Montserrat({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "InFuse Wallet",
@@ -20,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${mont.variable} antialiased`}>{children}</body>
+      <body className={` ${inter.className} antialiased`}>{children}</body>
     </html>
   );
 }
