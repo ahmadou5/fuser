@@ -3,7 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 
 const mont = Montserrat({
-  variable: "--font-geist-mono",
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
