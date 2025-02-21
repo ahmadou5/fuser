@@ -1,10 +1,8 @@
-import FooterLogo from '@/assets/footer-logo.svg';
-import TgIcon from '@/assets/icons/tg-icon.svg';
-import XIcon from '@/assets/icons/x-icon.svg';
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import Link from 'next/link';
-
+import FooterLogo from "@/assets/footer-logo.svg";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { Socials } from "@/utils/itemList";
 export default function Footer() {
   return (
     <footer className="border-t border-gray-800 bg-[#0A0B0D]">
@@ -27,26 +25,20 @@ export default function Footer() {
 
           {/* Social Links */}
           <div className="flex flex-col items-start md:items-center gap-2 lg:gap-4">
-            <h3 className="text-sm font-medium">Social</h3>
+            <h3 className="text-sm font-medium">Socials</h3>
             <div className="flex items-center gap-3">
-              <Link href="#" aria-label="𝕏">
-                <Image
-                  src={XIcon}
-                  alt="𝕏"
-                  width={28}
-                  height={28}
-                  className="h-10 w-10"
-                />
-              </Link>
-              <Link href="#" aria-label="Telegram">
-                <Image
-                  src={TgIcon}
-                  alt="Telegram"
-                  width={28}
-                  height={28}
-                  className="h-10 w-10"
-                />
-              </Link>
+              {Socials &&
+                Socials.map((item, i) => (
+                  <Link key={i} href={item.url} aria-label={item.alt}>
+                    <Image
+                      src={item.iconPath}
+                      alt={item.alt}
+                      width={28}
+                      height={28}
+                      className="h-10 w-10"
+                    />
+                  </Link>
+                ))}
             </div>
           </div>
 

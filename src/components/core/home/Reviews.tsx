@@ -1,28 +1,9 @@
-'use client';
+"use client";
 
-import HarriProfileImage from '@/assets/harri-profile-image.svg';
-import YukiProfileImage from '@/assets/yuki-profile-image.svg';
-import { BadgeCheck } from 'lucide-react';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
-
-const reviews = [
-  {
-    avatar: YukiProfileImage,
-    name: 'Yuki @SOON Mainnet is LIVE',
-    handle: '@frosmian88',
-    content:
-      'Just finishing talking with @4hmmadou_5 and really like the idea of first TG main app wallet. @InFuseWallet is already deployed to @soon_rwn devnet. Encouraging everyone to check this out.',
-  },
-  {
-    avatar: HarriProfileImage,
-    name: 'Harri',
-    handle: '@Harri_obi',
-    content:
-      'Two @SuperteamNFG projects (@InFuseWallet and @evexprotocol) got a win in the Light Protocol ZK Compression Hackathon. That makes it 5 internal wins in the Solana Radar Hackathon sidetrack 🔥',
-    verified: true,
-  },
-];
+import { BadgeCheck } from "lucide-react";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import { reviews } from "@/utils/itemList";
 
 function ReviewCard({
   avatar,
@@ -47,7 +28,7 @@ function ReviewCard({
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-4">
           <Image
-            src={avatar || '/placeholder.svg'}
+            src={avatar || "/placeholder.svg"}
             alt={name}
             width={48}
             height={48}

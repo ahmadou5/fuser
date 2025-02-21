@@ -1,18 +1,18 @@
-'use client';
-import NavLogo from '@/assets/logo.svg';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
-import { AnimatePresence } from 'motion/react';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+"use client";
+import NavLogo from "@/assets/logo.svg";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import { AnimatePresence } from "motion/react";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: '#', label: 'Community' },
-  { href: '#', label: 'Support' },
-  { href: '#', label: 'FAQ' },
+  { href: "#", label: "Community" },
+  { href: "#", label: "Support" },
+  { href: "#", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -24,15 +24,17 @@ export default function Navbar() {
       setScrolled(window.scrollY > 5);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
       className={cn(
-        'fixed top-0 z-50 w-full transition-colors duration-200',
-        scrolled ? 'bg-black/50 backdrop-blur-md' : 'bg-transparent'
+        "fixed top-0 z-50 w-full transition-colors duration-200",
+        scrolled
+          ? "lg:bg-black/50 bg-black/50 lg:backdrop-blur-md backdrop-blur-md"
+          : "lg:bg-transparent backdrop-blur-md bg-black/50"
       )}
     >
       <div className="mx-auto max-w-7xl px-4 py-4 md:px-6">
@@ -76,7 +78,7 @@ export default function Navbar() {
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="md:hidden"

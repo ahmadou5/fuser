@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import HeroBg from '@/assets/hero-bg.svg';
-import { Link } from '@/components/ui/link';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
+import HeroBg from "@/assets/hero-bg.svg";
+import { Link } from "@/components/ui/link";
+import * as motion from "motion/react-client";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -20,13 +20,13 @@ export default function Hero() {
               Your Asset <span className="text-primary">Guardian</span> Angel
             </h1>
             <p className="text-lg text-gray-400 mb-8">
-              InFuse Wallet offers fast and secured token swaps with asset
-              management across multiple chains through Telegram or our native
-              app.
+              A secured multichain{" "}
+              <span className="text-primary font-bold">MPC</span> wallet. simply
+              create a seedless and recoverable non-custodial wallet
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="#" size="lg" shine>
-                {' '}
+                {" "}
                 {/* TODO: Update download link */}
                 Download App
               </Link>
