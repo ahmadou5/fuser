@@ -48,7 +48,7 @@ function FeatureCard({
   ];
 
   return (
-    <div className="group perspective-[1000px] relative flex flex-col items-center p-8 rounded-2xl backdrop-blur-sm bg-[#044B7D] border border-[#0E99FE]/30 bg-opacity-50 hover:bg-opacity-100 hover:translate-y-[-8px] hover:scale-105 focus:bg-opacity-100 transition-all cursor-pointer">
+    <div className="group perspective-[1000px] relative flex flex-col items-center p-8 rounded-2xl backdrop-blur-sm bg-[#044B7D] border border-[#0E99FE]/30 hover:border-[#00A3FF] focus:border-[#00A3FF] bg-opacity-50 hover:bg-opacity-100 hover:translate-y-[-10px] hover:border-2 focus:bg-opacity-100 transition-all cursor-pointer duration-500">
       {/* Floating coins */}
       <div className="absolute inset-0 pointer-events-none">
         {coins.map((coin, i) => (
