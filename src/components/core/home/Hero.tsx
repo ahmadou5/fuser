@@ -1,13 +1,15 @@
 'use client';
 
+import BottomBlueLine from '@/assets/bottom-blue-line.svg';
 import HeroBg from '@/assets/hero-bg.svg';
+import TopBlueLine from '@/assets/top-blue-line.svg';
 import { Link } from '@/components/ui/link';
 import * as motion from 'motion/react-client';
 import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden py-20 lg:py-28">
+    <section className="relative py-20 lg:py-28">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -15,7 +17,7 @@ export default function Hero() {
         className="container px-4 mx-auto"
       >
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-xl">
+          <div className="relative max-w-xl">
             <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6">
               Your Asset <span className="text-primary">Guardian</span> Angel
             </h1>
@@ -52,6 +54,15 @@ export default function Hero() {
           </motion.div>
         </div>
       </motion.div>
+
+      <div className="absolute hidden lg:block lg:top-[20%] lg:left-0 w-fit h-fit  -z-10">
+        <Image src={TopBlueLine} alt="Top Blue Line" />
+      </div>
+      <div
+        className={`absolute hidden lg:block lg:left-0 lg:bottom-[20%] w-fit h-fit -z-10`}
+      >
+        <Image src={BottomBlueLine} alt="Bottom Blue Line" />
+      </div>
     </section>
   );
 }

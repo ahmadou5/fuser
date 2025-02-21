@@ -75,7 +75,7 @@ export default function Reviews() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#00A3FF]">
@@ -95,7 +95,7 @@ export default function Reviews() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               <ReviewCard {...review} />
             </motion.div>

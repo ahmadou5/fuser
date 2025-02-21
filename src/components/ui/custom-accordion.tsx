@@ -68,18 +68,14 @@ interface AccordionProps {
 }
 
 export function CustomAccordion({ items }: AccordionProps) {
-  const [openItems, setOpenItems] = useState<Set<number>>(new Set([0])); // First item open by default
+  const [openItem, setOpenItem] = useState<number>(0);
 
   const toggleItem = (index: number) => {
-    setOpenItems((prev) => {
-      const next = new Set(prev);
-      if (next.has(index)) {
-        next.delete(index);
-      } else {
-        next.add(index);
-      }
-      return next;
-    });
+    if (openItem === index) {
+      setOpenItem(-1);
+    } else {
+      setOpenItem(index);
+    }
   };
 
   return (
@@ -90,7 +86,7 @@ export function CustomAccordion({ items }: AccordionProps) {
           id={index.toString()}
           question={item.question}
           answer={item.answer}
-          isOpen={openItems.has(index)}
+          isOpen={index === openItem}
           onToggle={() => toggleItem(index)}
         />
       ))}

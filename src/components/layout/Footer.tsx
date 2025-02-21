@@ -7,7 +7,14 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-800 bg-[#0A0B0D]">
+    <footer className="relative">
+      <div
+        className="absolute top-0 right-0 w-full h-[2px] bg-white/5"
+        aria-hidden
+      >
+        <div className="w-[80%] h-full rounded-md bg-primary/70" />
+      </div>
+
       <div className="container px-4 py-8 mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           {/* Logo and Copyright */}
@@ -29,7 +36,7 @@ export default function Footer() {
           <div className="flex flex-col items-start md:items-center gap-2 lg:gap-4">
             <h3 className="text-sm font-medium">Social</h3>
             <div className="flex items-center gap-3">
-              <Link href="#" aria-label="𝕏">
+              <Link href="https://x.com/infuseWallet" aria-label="𝕏">
                 <Image
                   src={XIcon}
                   alt="𝕏"
