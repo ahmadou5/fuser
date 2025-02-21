@@ -25,6 +25,7 @@ const LightRipples: React.FC<LightRipplesProps> = ({ className }) => {
         height={3807}
         alt=""
         className="w-full h-full object-cover"
+        priority
       />
     </div>
   );
