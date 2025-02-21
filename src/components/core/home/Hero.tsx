@@ -1,43 +1,57 @@
-"use client";
-import HeroBg from "@/assets/hero-bg.svg";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+'use client';
+
+import HeroBg from '@/assets/hero-bg.svg';
+import { Link } from '@/components/ui/link';
+import * as motion from 'motion/react-client';
+import Image from 'next/image';
 
 export default function Hero() {
-  const router = useRouter();
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:py-24 min-h-[calc(100vh-4rem)] grid items-center gap-12 lg:grid-cols-2">
-      <div className="space-y-8">
-        <h1 className="text-4xl font-bold  tracking-tight text-white sm:text-6xl">
-          Your Asset <span className="text-[#0095FF]">Guardian</span> Angel
-        </h1>
-        <p className="max-w-xl font-medium text-lg text-gray-300">
-          A secured multichain{" "}
-          <span className="text-[#0095FF]/70 font-bold">MPC</span> wallet.
-          simply create a seedless and recoverable wallet account.
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <Button
-            size="lg"
-            className="bg-[#0095FF] font-regular text-white hover:bg-[#0095FF]/90"
-            onClick={() => router.push("/waitlist")}
+    <section className="relative overflow-hidden py-20 lg:py-28">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="container px-4 mx-auto"
+      >
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-xl">
+            <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6">
+              Your Asset <span className="text-primary">Guardian</span> Angel
+            </h1>
+            <p className="text-lg text-gray-400 mb-8">
+              InFuse Wallet offers fast and secured token swaps with asset
+              management across multiple chains through Telegram or our native
+              app.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="#" size="lg" shine>
+                {' '}
+                {/* TODO: Update download link */}
+                Download App
+              </Link>
+              <Link href="/waitlist" size="lg" variant="outline" shine>
+                Join The Waitlist
+              </Link>
+            </div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative"
           >
-            Join The Waitlist
-          </Button>
+            <Image
+              src={HeroBg}
+              alt="InFuse Wallet App Interface"
+              width={600}
+              height={400}
+              className="w-full h-auto"
+              priority
+            />
+          </motion.div>
         </div>
-      </div>
-      <div className="w-full lg:mx-0 ">
-        <div className="relative mt-9 h-[390px] ">
-          <Image
-            src={HeroBg}
-            alt="Mobile app interface"
-            className="object-contain h-auto w-auto absolute top-[50%] lg:mb-1 mb-20 lg:left-[25%] transform translate-y-[-50%]"
-            height={640}
-            width={320}
-          />
-        </div>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 }

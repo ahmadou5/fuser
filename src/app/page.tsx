@@ -1,13 +1,17 @@
+'use client';
+
+import FAQ from '@/components/core/home/Faq';
+import Features from '@/components/core/home/Features';
 import Hero from '@/components/core/home/Hero';
-import Navbar from '@/components/layout/Navbar';
+import Reviews from '@/components/core/home/Reviews';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0D2B4B] to-[#071625]">
-      <Navbar />
-      <div className="pt-20">
-        <Hero />
-      </div>
+    <main className="relative pt-20 overflow-x-hidden">
+      <Hero />
+      <Features />
+      <Reviews />
+      <FAQ />
     </main>
   );
 }
