@@ -3,6 +3,7 @@
 import LightRipplesImg from '@/assets/light-ripples.svg';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 interface LightRipplesProps {
@@ -10,8 +11,7 @@ interface LightRipplesProps {
 }
 
 const LightRipples: React.FC<LightRipplesProps> = ({ className }) => {
-  const pathname =
-    typeof window !== 'undefined' ? window.location.pathname : '';
+  const pathname = usePathname();
   if (pathname !== '/') return null;
 
   return (
