@@ -1,3 +1,4 @@
+import LightRipples from '@/components/base/LightRipples';
 import SplashScreen from '@/components/core/SplashScreen';
 import Footer from '@/components/layout/Footer';
 import Navbar from '@/components/layout/Navbar';
@@ -20,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased relative`}>
         <SplashScreen />
+        <LightRipples className="inset-0 right-10 h-full w-full -z-10" />
+
         <header>
           <Navbar />
         </header>

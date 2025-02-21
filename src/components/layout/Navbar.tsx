@@ -1,6 +1,8 @@
 "use client";
+
 import NavLogo from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
+import { Link as CustomLink } from "@/components/ui/link";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
@@ -12,7 +14,7 @@ import { useEffect, useState } from "react";
 const navLinks = [
   { href: "#", label: "Community" },
   { href: "#", label: "Support" },
-  { href: "#", label: "FAQ" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -59,9 +61,13 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Button shine className="hidden md:block">
+          <CustomLink
+            href="https://t.me/InFuseSolanabot"
+            className="hidden md:block"
+            shine
+          >
             Access Wallet
-          </Button>
+          </CustomLink>
 
           {/* Mobile Menu Button */}
           <button

@@ -2,7 +2,8 @@
 
 import AllBlockChainInOnePlaceImg from '@/assets/all-blockchain-in-one-place.svg';
 import Coin from '@/assets/coin.svg';
-import { Button } from '@/components/ui/button';
+import Line from '@/assets/line.svg';
+import { Link } from '@/components/ui/link';
 import { LinkIcon, Lock, Shield } from 'lucide-react';
 import * as motion from 'motion/react-client';
 import Image from 'next/image';
@@ -91,9 +92,12 @@ function FeatureCard({
         </div>
         <h3 className="text-lg font-semibold mb-3">{title}</h3>
         <p className="text-gray-400 text-sm mb-6">{description}</p>
-        <Button className="opacity-50 group-hover:opacity-100 transition-opacity">
+        <Link
+          href="/#about"
+          className="opacity-50 group-hover:opacity-100 transition-opacity"
+        >
           Learn more
-        </Button>
+        </Link>
       </div>
     </div>
   );
@@ -102,10 +106,10 @@ function FeatureCard({
 function StatItem({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <div className="relative">
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-[60%] bg-[#00A3FF]" />
-      <div className="pl-4 py-2 bg-[#1A1B1E]/40 backdrop-blur-sm rounded-r-lg">
-        <h3 className="text-xl font-bold">{title}</h3>
-        <p className="text-xs text-gray-400">{subtitle}</p>
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-[90%] rounded-lg bg-gradient-to-b from-[#00A3FF] to-[#00A3FF]/30" />
+      <div className="pl-4 py-2">
+        <h3 className="text-xl lg:text-2xl font-bold">{title}</h3>
+        <p className="text-xs lg:text-base text-gray-400">{subtitle}</p>
       </div>
     </div>
   );
@@ -113,19 +117,27 @@ function StatItem({ title, subtitle }: { title: string; subtitle: string }) {
 
 export default function Features() {
   return (
-    <section className="py-20 lg:py-28">
-      <div className="container px-4 mx-auto">
-        <div className="grid md:grid-cols-3 gap-0 mb-16">
+    <section className="relative py-20 lg:py-28">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false }}
+        className="p-5 mb-16 bg-white/5 backdrop-blur-sm border-b border-primary"
+      >
+        <div className="grid md:grid-cols-3 gap-0 container mx-auto">
           <StatItem title="200+" subtitle="Network address" />
           <StatItem title="Email" subtitle="Recovery support" />
           <StatItem title="Multi-chain" subtitle="Support" />
         </div>
+      </motion.div>
 
+      <div className="container px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="text-center mb-16"
         >
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#00A3FF]">
@@ -144,19 +156,22 @@ export default function Features() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               <FeatureCard {...feature} />
             </motion.div>
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div
+          className="relative grid lg:grid-cols-2 gap-12 items-center"
+          id="about"
+        >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <Image
               src={AllBlockChainInOnePlaceImg}
@@ -170,7 +185,7 @@ export default function Features() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[#00A3FF]">
               All Blockchain In One Place
@@ -191,6 +206,14 @@ export default function Features() {
           </motion.div>
         </div>
       </div>
+
+      <Image
+        src={Line}
+        alt=""
+        width={500}
+        height={600}
+        className="absolute right-0 left-0 bottom-0 lg:bottom-20 w-full h-auto"
+      />
     </section>
   );
 }

@@ -5,7 +5,14 @@ import Link from "next/link";
 import { Socials } from "@/utils/itemList";
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-800 bg-[#0A0B0D]">
+    <footer className="relative">
+      <div
+        className="absolute top-0 right-0 w-full h-[2px] bg-white/5"
+        aria-hidden
+      >
+        <div className="w-[80%] h-full rounded-md bg-primary/70" />
+      </div>
+
       <div className="container px-4 py-8 mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           {/* Logo and Copyright */}

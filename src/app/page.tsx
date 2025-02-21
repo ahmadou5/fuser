@@ -7,7 +7,7 @@ import Reviews from '@/components/core/home/Reviews';
 
 export default function Home() {
   return (
-    <main className="relative pt-20 overflow-x-hidden">
+    <main className="pt-20 overflow-x-hidden">
       <Hero />
       <Features />
       <Reviews />
