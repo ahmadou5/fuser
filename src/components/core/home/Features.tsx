@@ -1,36 +1,13 @@
-'use client';
+"use client";
 
-import AllBlockChainInOnePlaceImg from '@/assets/all-blockchain-in-one-place.svg';
-import Coin from '@/assets/coin.svg';
-import Line from '@/assets/line.svg';
-import { Link } from '@/components/ui/link';
-import { LinkIcon, Lock, Shield } from 'lucide-react';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
-
-const features = [
-  {
-    icon: Shield,
-    title: 'Social Recovery',
-    description:
-      'Leveraging advanced and secured cryptography feature (MPC) for secured wallet.',
-    variant: 'dark' as const,
-  },
-  {
-    icon: LinkIcon,
-    title: 'Multi-chain Support',
-    description:
-      'InFuse Wallet lets users manage multiple cryptocurrencies across different blockchains in one place.',
-    variant: 'blue' as const,
-  },
-  {
-    icon: Lock,
-    title: 'Security',
-    description:
-      'Leveraging advanced and secured cryptography feature (MPC) for secured wallet.',
-    variant: 'dark' as const,
-  },
-];
+import AllBlockChainInOnePlaceImg from "@/assets/all-blockchain-in-one-place.svg";
+import Coin from "@/assets/coin.svg";
+import Line from "@/assets/line.svg";
+import { Link } from "@/components/ui/link";
+import { Shield } from "lucide-react";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import { Stats, features } from "@/utils/itemList";
 
 function FeatureCard({
   icon: Icon,
@@ -42,10 +19,10 @@ function FeatureCard({
   description: string;
 }) {
   const coins = [
-    { top: '15%', left: '-20px', size: 'big', rotateOffset: 0 },
-    { top: '8%', left: '5%', size: 'small', rotateOffset: 45 },
-    { top: '50%', right: '-20px', size: 'big', rotateOffset: 90 },
-    { top: '65%', right: '3%', size: 'small', rotateOffset: 135 },
+    { top: "15%", left: "-20px", size: "big", rotateOffset: 0 },
+    { top: "8%", left: "5%", size: "small", rotateOffset: 45 },
+    { top: "50%", right: "-20px", size: "big", rotateOffset: 90 },
+    { top: "65%", right: "3%", size: "small", rotateOffset: 135 },
   ];
 
   return (
@@ -60,7 +37,7 @@ function FeatureCard({
               top: coin.top,
               left: coin.left,
               right: coin.right,
-              transformStyle: 'preserve-3d',
+              transformStyle: "preserve-3d",
             }}
             animate={{
               rotateX: [coin.rotateOffset, coin.rotateOffset + 360],
@@ -71,15 +48,15 @@ function FeatureCard({
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: "easeInOut",
               delay: i * 0.3,
             }}
           >
             <Image
               src={Coin}
               alt="Coin"
-              width={coin.size === 'big' ? 40 : 20}
-              height={coin.size === 'big' ? 40 : 20}
+              width={coin.size === "big" ? 40 : 20}
+              height={coin.size === "big" ? 40 : 20}
               className="drop-shadow-[0_0_15px_rgba(0,163,255,0.3)]"
             />
           </motion.div>
@@ -126,9 +103,10 @@ export default function Features() {
         className="p-5 mb-16 bg-white/5 backdrop-blur-sm border-b border-primary"
       >
         <div className="grid md:grid-cols-3 gap-0 container mx-auto">
-          <StatItem title="200+" subtitle="Network address" />
-          <StatItem title="Email" subtitle="Recovery support" />
-          <StatItem title="Multi-chain" subtitle="Support" />
+          {Stats &&
+            Stats.map((item, i) => (
+              <StatItem key={i} title={item.title} subtitle={item.subtitle} />
+            ))}
         </div>
       </motion.div>
 

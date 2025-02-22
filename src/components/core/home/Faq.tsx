@@ -1,31 +1,14 @@
-'use client';
+"use client";
 
-import BottomBlueLine from '@/assets/bottom-blue-line.svg';
-import { CustomAccordion } from '@/components/ui/custom-accordion';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
-
-const faqs = [
-  {
-    question: 'What is InFuse Wallet?',
-    answer:
-      'InFuse Wallet is a multi-chain cryptocurrency wallet that allows users to securely store, manage, and interact with various digital assets and decentralized applications (dApps) across multiple blockchain networks in one place.',
-  },
-  {
-    question: 'How secure is InFuse Wallet?',
-    answer:
-      'InFuse Wallet employs advanced security measures including MPC technology, multi-factor authentication, and social recovery features to ensure the highest level of protection for your digital assets.',
-  },
-  {
-    question: 'What does "multi-chain support" mean?',
-    answer:
-      'Multi-chain support means you can manage cryptocurrencies from different blockchain networks (like Ethereum, Solana, and others) all within a single wallet interface, eliminating the need for multiple separate wallets.',
-  },
-];
+import BottomBlueLine from "@/assets/bottom-blue-line.svg";
+import { CustomAccordion } from "@/components/ui/custom-accordion";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import { faqs } from "@/utils/itemList";
 
 export default function FAQ() {
   return (
-    <section className="py-20 lg:py-28" id="#">
+    <section className="py-20 lg:py-28" id="faq">
       <div className="container px-4 mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
           <motion.div

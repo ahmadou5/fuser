@@ -1,17 +1,18 @@
-import LightRipples from '@/components/base/LightRipples';
-import SplashScreen from '@/components/core/SplashScreen';
-import Footer from '@/components/layout/Footer';
-import Navbar from '@/components/layout/Navbar';
-import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
-import './globals.css';
+import LightRipples from "@/components/base/LightRipples";
+import SplashScreen from "@/components/core/SplashScreen";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
+import "./globals.css";
 
-const inter = Montserrat({ subsets: ['latin'], weight: '400' });
+const inter = Montserrat({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: 'InFuse Wallet',
+  title: "InFuse Wallet",
   description:
-    'A secured multichain MPC wallet. simply create a seedless and recoverable wallet account.',
+    "A secured multichain MPC wallet. simply create a seedless and recoverable wallet account.",
 };
 
 export default function RootLayout({
@@ -32,6 +33,7 @@ export default function RootLayout({
         {children}
 
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
