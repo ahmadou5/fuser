@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import BottomBlueLine from "@/assets/bottom-blue-line.svg";
-import { CustomAccordion } from "@/components/ui/custom-accordion";
-import * as motion from "motion/react-client";
-import Image from "next/image";
-import { faqs } from "@/utils/itemList";
+import BottomBlueLine from '@/assets/bottom-blue-line.svg';
+import { CustomAccordion } from '@/components/ui/custom-accordion';
+import * as motion from 'motion/react-client';
+import Image from 'next/image';
+import { faqs } from '@/utils/itemList';
 
 export default function FAQ() {
   return (
-    <section className="py-20 lg:py-28" id="faq">
+    <section className="relative py-20 lg:py-28" id="faq">
       <div className="container px-4 mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
           <motion.div
@@ -38,7 +38,7 @@ export default function FAQ() {
       </div>
 
       <div
-        className={`absolute hidden lg:block lg:left-0 lg:bottom-[25rem] w-fit h-fit -z-10`}
+        className={`absolute hidden lg:block lg:left-0 lg:top-[15rem] w-fit h-fit -z-10`}
       >
         <Image src={BottomBlueLine} alt="Bottom Blue Line" />
       </div>
