@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
+import NextLink from 'next/link';
 import * as React from 'react';
 
 const linkVariants = cva(
@@ -61,7 +62,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     { className, variant, size, asChild = false, shine, href, ...props },
     ref
   ) => {
-    const Comp = asChild ? Slot : 'a';
+    const Comp = asChild ? Slot : NextLink;
 
     return (
       <Comp

@@ -1,5 +1,3 @@
-'use client';
-
 import WaitlistForm from '@/components/core/waitlist/WaitlistForm';
 
 export default function Home() {
