@@ -1,3 +1,6 @@
+export const maxDuration = 60;
+export const dynamic = 'force-dynamic';
+
 import { connectToDatabase } from '@/lib/mongodb';
 import { WaitlistEntry } from '@/models/WaitlistEntry';
 import { NextResponse } from 'next/server';

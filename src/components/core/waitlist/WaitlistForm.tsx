@@ -42,16 +42,12 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ className = '' }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to join waitlist');
-      }
-
-      setStatus('success');
+        setError(data.error || 'Failed to join waitlist');
+        setStatus('idle');
+      } else setStatus('success');
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : 'Something went wrong. Please try again.'
-      );
+      console.error(err instanceof Error ? err.message : err);
+      setError('Something went wrong. Please try again later.');
       setStatus('idle');
     }
   };

@@ -19,9 +19,11 @@ export async function connectToDatabase() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
-      return mongoose;
-    });
+    cached.promise = mongoose
+      .connect(MONGODB_URI, { timeoutMS: 40000 })
+      .then((mongoose) => {
+        return mongoose;
+      });
   }
 
   try {
