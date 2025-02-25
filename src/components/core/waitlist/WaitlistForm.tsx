@@ -1,40 +1,39 @@
-'use client';
+"use client";
 
-import { Button, buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { CheckCircle2, Loader2 } from 'lucide-react';
-import Link from 'next/link';
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { CheckCircle2, Loader2 } from "lucide-react";
+import { Link } from "@/components/ui/link";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 interface FormData {
   name: string;
   email: string;
 }
 
-type FormStatus = 'idle' | 'loading' | 'success';
+type FormStatus = "idle" | "loading" | "success";
 
 interface WaitlistFormProps {
   onSubmit?: (data: FormData) => Promise<void>;
   className?: string;
 }
 
-const WaitlistForm: React.FC<WaitlistFormProps> = ({ className = '' }) => {
+const WaitlistForm: React.FC<WaitlistFormProps> = ({ className = "" }) => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
+    name: "",
+    email: "",
   });
-  const [status, setStatus] = useState<FormStatus>('idle');
-  const [error, setError] = useState<string>('');
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('loading');
-    setError('');
+    setStatus("loading");
+    setError("");
 
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -42,16 +41,40 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ className = '' }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || 'Failed to join waitlist');
-        setStatus('idle');
-      } else setStatus('success');
+        setError(data.error || "Failed to join waitlist");
+        setStatus("idle");
+      } else setStatus("success");
     } catch (err) {
       console.error(err instanceof Error ? err.message : err);
-      setError('Something went wrong. Please try again later.');
-      setStatus('idle');
+      setError("Something went wrong. Please try again later.");
+      setStatus("idle");
     }
   };
 
+  const shareOnTwitter = () => {
+    const hashtags: string[] = ["solana", "MPC"];
+    const tweetText = `I just joined @infuseWallet waitlist.
+    A multichain MPC wallet powered by @solana and @SuperteamNG🇳🇬
+
+What are you waiting for? 
+Join here ASAP 👉🏽`;
+    const url = "https://infusewallet.xyz";
+    const via = "";
+    // Encode the content for a URL
+    const encodedText = encodeURIComponent(tweetText);
+    const encodedHashtags =
+      hashtags.length > 0
+        ? `&hashtags=${encodeURIComponent(hashtags.join(","))}`
+        : "";
+    const encodedUrl = url ? `&url=${encodeURIComponent(url)}` : "";
+    const encodedVia = via ? `&via=${encodeURIComponent(via)}` : "";
+
+    // Construct the Twitter web intent URL
+    const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodedText}${encodedHashtags}${encodedUrl}${encodedVia}`;
+
+    // Open Twitter in a new tab
+    window.open(twitterIntentUrl, "_blank");
+  };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -60,9 +83,9 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ className = '' }) => {
     }));
   };
 
-  if (status === 'success') {
+  if (status === "success") {
     return (
-      <div className="min-h-[700px] flex items-center justify-center p-6">
+      <div className="min-h-[750px] flex items-center justify-center p-6">
         <div className="relative w-full max-w-md p-8 rounded-2xl overflow-hidden backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl animate-fade-in">
           <div className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 opacity-30" />
           <div className="relative flex flex-col items-center text-center space-y-4">
@@ -74,11 +97,11 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ className = '' }) => {
               We&apos;ll notify you when we launch. Stay tuned!
             </p>
           </div>
-          <div className="w-[90%] ml-auto mr-auto mt-6 items-center justify-center flex">
-            <Link
-              href="/"
-              className={cn(buttonVariants(), 'ml-auto mr-auto w-[60%]')}
-            >
+          <div className="w-[99%] ml-auto mr-auto mt-6 items-center justify-between flex">
+            <Button onClick={() => shareOnTwitter()} shine size={"lg"}>
+              Share on 𝕏{" "}
+            </Button>
+            <Link href="/" shine size={"lg"}>
               Back Home
             </Link>
           </div>
@@ -147,11 +170,11 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ className = '' }) => {
 
             <Button
               type="submit"
-              disabled={status === 'loading'}
+              disabled={status === "loading"}
               className="w-full py-3 px-6 rounded-lg text-white font-medium hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 transform transition-all disabled:opacity-70 animate-slide-up flex items-center justify-center space-x-2"
               shine
             >
-              {status === 'loading' ? (
+              {status === "loading" ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
                   <span>Joining...</span>

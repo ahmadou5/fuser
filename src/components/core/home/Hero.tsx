@@ -4,10 +4,14 @@ import BottomBlueLine from "@/assets/bottom-blue-line.svg";
 import HeroBg from "@/assets/hero-bg.svg";
 import TopBlueLine from "@/assets/top-blue-line.svg";
 import { Link } from "@/components/ui/link";
+import Toaster from "@/components/ui/Toaster";
 import * as motion from "motion/react-client";
 import Image from "next/image";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
+  const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
   return (
     <section className="relative py-20 lg:py-28">
       <motion.div
@@ -27,11 +31,15 @@ export default function Hero() {
               create a seedless and recoverable non-custodial wallet
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="#" size="lg" shine>
-                {" "}
-                {/* TODO: Update download link */}
+              <Button
+                size={"lg"}
+                shine
+                type="button"
+                onClick={() => setIsToastOpen(true)}
+              >
                 Download App
-              </Link>
+              </Button>
+              {/* TODO: Update download link */}
               <Link href="/waitlist" size="lg" variant="outline" shine>
                 Join The Waitlist
               </Link>
@@ -54,6 +62,11 @@ export default function Hero() {
           </motion.div>
         </div>
       </motion.div>
+      <Toaster
+        setIsToastOpen={setIsToastOpen}
+        isToastOpen={isToastOpen}
+        content="Coming Soon!"
+      />
 
       <div className="absolute hidden lg:block lg:top-[20%] lg:left-0 w-fit h-fit  -z-10">
         <Image src={TopBlueLine} alt="Top Blue Line" />

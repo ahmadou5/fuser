@@ -6,7 +6,6 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import { MiniContextProvider } from "@/context/miniContext";
 
 const inter = Montserrat({ subsets: ["latin"], weight: "400" });
 
@@ -30,7 +29,7 @@ export default function RootLayout({
         <header>
           <Navbar />
         </header>
-        <MiniContextProvider>{children}</MiniContextProvider>
+        {children}
 
         <Footer />
         <Analytics />

@@ -8,6 +8,7 @@ import { Shield } from "lucide-react";
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import { Stats, features } from "@/utils/itemList";
+import { useEffect, useState } from "react";
 
 function FeatureCard({
   icon: Icon,
@@ -93,6 +94,27 @@ function StatItem({ title, subtitle }: { title: string; subtitle: string }) {
 }
 
 export default function Features() {
+  const [waitlistValue, setWaitlistValue] = useState(0);
+  useEffect(() => {
+    const getValue = async () => {
+      try {
+        const response = await fetch("/api/waitlist", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          setWaitlistValue(0);
+        } else setWaitlistValue(data.count);
+      } catch (err) {
+        console.error(err instanceof Error ? err.message : err);
+      }
+    };
+    getValue();
+  }, []);
   return (
     <section className="relative py-20 lg:py-28">
       <motion.div
@@ -103,6 +125,10 @@ export default function Features() {
         className="p-5 mb-16 bg-white/5 backdrop-blur-sm border-b border-primary"
       >
         <div className="grid md:grid-cols-3 gap-0 container mx-auto">
+          <StatItem
+            title={waitlistValue?.toString()}
+            subtitle={"Members Waitlisted"}
+          />
           {Stats &&
             Stats.map((item, i) => (
               <StatItem key={i} title={item.title} subtitle={item.subtitle} />
