@@ -1,15 +1,21 @@
 export const maxDuration = 60;
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
-import { connectToDatabase } from '@/lib/mongodb';
-import { WaitlistEntry } from '@/models/WaitlistEntry';
-import { NextResponse } from 'next/server';
-import { z } from 'zod';
+import { connectToDatabase } from "@/lib/mongodb";
+import { WaitlistEntry } from "@/models/WaitlistEntry";
+import { NextResponse } from "next/server";
+import { z } from "zod";
 
 const waitlistSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
 });
+
+export async function GET() {
+  await connectToDatabase();
+  const count = await WaitlistEntry.countDocuments();
+  return NextResponse.json({ message: "Success", count });
+}
 
 export async function POST(req: Request) {
   try {
@@ -28,7 +34,7 @@ export async function POST(req: Request) {
 
     if (existingEntry) {
       return NextResponse.json(
-        { error: 'This email is already on the waitlist' },
+        { error: "This email is already on the waitlist" },
         { status: 409 }
       );
     }
@@ -37,7 +43,7 @@ export async function POST(req: Request) {
     const entry = await WaitlistEntry.create(validatedData);
 
     return NextResponse.json(
-      { message: 'Successfully joined waitlist', entry },
+      { message: "Successfully joined waitlist", entry },
       { status: 201 }
     );
   } catch (error) {
@@ -48,9 +54,9 @@ export async function POST(req: Request) {
       );
     }
 
-    console.error('Waitlist error:', error);
+    console.error("Waitlist error:", error);
     return NextResponse.json(
-      { error: 'Failed to join waitlist' },
+      { error: "Failed to join waitlist" },
       { status: 500 }
     );
   }
