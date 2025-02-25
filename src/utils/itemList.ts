@@ -31,6 +31,12 @@ export const Socials: socialItem[] = [
     iconPath: TgIcon,
     alt: "Telegram",
   },
+  {
+    name: "Discord",
+    url: "https://discord.gg/3ve2KAvj",
+    iconPath: TgIcon,
+    alt: "discord",
+  },
 ];
 
 export const features = [
@@ -38,21 +44,21 @@ export const features = [
     icon: Key,
     title: "Seedless Wallet",
     description:
-      "create a wallet that is secured by accounts you already have, you won't have to worry about seed phrases.",
+      "Create a wallet that is secured by accounts you already have, you won't have to worry about seed phrases.",
     variant: "dark" as const,
   },
   {
     icon: CloudDownloadIcon,
     title: "Social Recovery",
     description:
-      "easily recover your non-custodial wallet using your phone number or email account.",
+      "Easily recover your non-custodial wallet using your phone number or email account.",
     variant: "dark" as const,
   },
   {
     icon: Shield,
     title: "Security",
     description:
-      "experience the most secured programmable MPC wallet, Leveraging advanced and secured cryptography.",
+      "Experience the most secured programmable MPC wallet, Leveraging advanced and secured cryptography.",
     variant: "dark" as const,
   },
   //  {
@@ -66,8 +72,8 @@ export const features = [
 
 export const Stats = [
   {
-    title: "2",
-    subtitle: "Active Network",
+    title: "3",
+    subtitle: "Active Networks",
   },
 
   {
@@ -93,6 +99,13 @@ export const reviews: Reviews[] = [
       "Two @SuperteamNG projects (@InFuseWallet and @verxioprotocol) got a win in the Light Protocol ZK Compression Hackathon. That makes it 5 internal wins in the Solana Radar Hackathon sidetrack 🔥",
     verified: true,
   },
+  {
+    avatar: HarriProfileImage,
+    name: "Harri",
+    handle: "@Harri_obi",
+    content: "Joined. Love the Interface.",
+    verified: true,
+  },
 ];
 
 export const faqs = [
@@ -107,7 +120,7 @@ export const faqs = [
       "InFuse Wallet employs advanced security measures including MPC technology, multi-factor authentication, and social recovery features to ensure the highest level of protection for your digital assets.",
   },
   {
-    question: "WTF is MPC?",
+    question: "What is MPC?",
     answer:
       "InFuse Wallet employs advanced security measures including MPC technology, multi-factor authentication, and social recovery features to ensure the highest level of protection for your digital assets.",
   },
