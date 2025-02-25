@@ -32,6 +32,6 @@ export async function connectToDatabase() {
     cached.promise = null;
     throw e;
   }
-  console.log("Connected to db", cached.conn);
+
   return cached.conn;
 }
