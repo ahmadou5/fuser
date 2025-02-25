@@ -75,6 +75,10 @@ export const Stats = [
     title: "3",
     subtitle: "Active Networks",
   },
+  {
+    title: `0`,
+    subtitle: "Waitlist Members",
+  },
 
   {
     title: "Multi-chain",
