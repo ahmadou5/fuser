@@ -72,7 +72,7 @@ export const features = [
 
 export const Stats = [
   {
-    title: "3",
+    title: 3,
     subtitle: "Active Networks",
   },
 

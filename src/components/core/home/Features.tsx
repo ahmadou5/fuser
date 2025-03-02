@@ -168,7 +168,11 @@ export default function Features() {
           />
           {Stats &&
             Stats.map((item, i) => (
-              <StatItem key={i} title={item.title} subtitle={item.subtitle} />
+              <StatItem
+                key={i}
+                title={item.title.toString()}
+                subtitle={item.subtitle}
+              />
             ))}
         </div>
       </motion.div>
