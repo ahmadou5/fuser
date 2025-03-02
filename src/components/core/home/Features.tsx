@@ -1,14 +1,44 @@
-"use client";
+'use client';
 
-import AllBlockChainInOnePlaceImg from "@/assets/all-blockchain-in-one-place.svg";
-import Coin from "@/assets/coin.svg";
-import Line from "@/assets/line.svg";
-import { Link } from "@/components/ui/link";
-import { Shield } from "lucide-react";
-import * as motion from "motion/react-client";
-import Image from "next/image";
-import { Stats, features } from "@/utils/itemList";
-import { useEffect, useState } from "react";
+import AllBlockChainInOnePlaceImg from '@/assets/all-blockchain-in-one-place.svg';
+import Coin from '@/assets/coin.svg';
+import Line from '@/assets/line.svg';
+import { Link } from '@/components/ui/link';
+import { Stats, features } from '@/utils/itemList';
+import { Shield } from 'lucide-react';
+import * as motion from 'motion/react-client';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
+const useCountUp = (end: number, duration: number = 2000) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    let animationFrame: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percentage = Math.min(progress / duration, 1);
+
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
+      const currentCount = Math.floor(easeOutQuart * end);
+
+      setCount(currentCount);
+
+      if (percentage < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, duration]);
+
+  return count;
+};
 
 function FeatureCard({
   icon: Icon,
@@ -20,10 +50,10 @@ function FeatureCard({
   description: string;
 }) {
   const coins = [
-    { top: "15%", left: "-20px", size: "big", rotateOffset: 0 },
-    { top: "8%", left: "5%", size: "small", rotateOffset: 45 },
-    { top: "50%", right: "-20px", size: "big", rotateOffset: 90 },
-    { top: "65%", right: "3%", size: "small", rotateOffset: 135 },
+    { top: '15%', left: '-20px', size: 'big', rotateOffset: 0 },
+    { top: '8%', left: '5%', size: 'small', rotateOffset: 45 },
+    { top: '50%', right: '-20px', size: 'big', rotateOffset: 90 },
+    { top: '65%', right: '3%', size: 'small', rotateOffset: 135 },
   ];
 
   return (
@@ -38,7 +68,7 @@ function FeatureCard({
               top: coin.top,
               left: coin.left,
               right: coin.right,
-              transformStyle: "preserve-3d",
+              transformStyle: 'preserve-3d',
             }}
             animate={{
               rotateX: [coin.rotateOffset, coin.rotateOffset + 360],
@@ -49,15 +79,15 @@ function FeatureCard({
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: 'easeInOut',
               delay: i * 0.3,
             }}
           >
             <Image
               src={Coin}
               alt="Coin"
-              width={coin.size === "big" ? 40 : 20}
-              height={coin.size === "big" ? 40 : 20}
+              width={coin.size === 'big' ? 40 : 20}
+              height={coin.size === 'big' ? 40 : 20}
               className="drop-shadow-[0_0_15px_rgba(0,163,255,0.3)]"
             />
           </motion.div>
@@ -82,11 +112,16 @@ function FeatureCard({
 }
 
 function StatItem({ title, subtitle }: { title: string; subtitle: string }) {
+  const isNumber = !isNaN(Number(title));
+  const animatedValue = useCountUp(isNumber ? Number(title) : 0);
+
   return (
     <div className="relative">
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-[90%] rounded-lg bg-gradient-to-b from-[#00A3FF] to-[#00A3FF]/30" />
       <div className="pl-4 py-2">
-        <h3 className="text-xl lg:text-2xl font-bold">{title}</h3>
+        <h3 className="text-xl lg:text-2xl font-bold">
+          {isNumber ? animatedValue : title}
+        </h3>
         <p className="text-xs lg:text-base text-gray-400">{subtitle}</p>
       </div>
     </div>
@@ -95,13 +130,14 @@ function StatItem({ title, subtitle }: { title: string; subtitle: string }) {
 
 export default function Features() {
   const [waitlistValue, setWaitlistValue] = useState(0);
+
   useEffect(() => {
     const getValue = async () => {
       try {
-        const response = await fetch("/api/waitlist", {
-          method: "GET",
+        const response = await fetch('/api/waitlist', {
+          method: 'GET',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         });
 
@@ -115,6 +151,7 @@ export default function Features() {
     };
     getValue();
   }, []);
+
   return (
     <section className="relative py-20 lg:py-28">
       <motion.div
@@ -127,7 +164,7 @@ export default function Features() {
         <div className="grid md:grid-cols-3 gap-0 container mx-auto">
           <StatItem
             title={waitlistValue?.toString()}
-            subtitle={"Members Waitlisted"}
+            subtitle={'Members Waitlisted'}
           />
           {Stats &&
             Stats.map((item, i) => (
