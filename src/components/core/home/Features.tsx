@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import AllBlockChainInOnePlaceImg from '@/assets/all-blockchain-in-one-place.svg';
-import Coin from '@/assets/coin.svg';
-import Line from '@/assets/line.svg';
-import { Link } from '@/components/ui/link';
-import { Stats, features } from '@/utils/itemList';
-import { Shield } from 'lucide-react';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import AllBlockChainInOnePlaceImg from "@/assets/all-blockchain-in-one-place.svg";
+import Coin from "@/assets/coin.svg";
+import Line from "@/assets/line.svg";
+import { Link } from "@/components/ui/link";
+import { Stats, features } from "@/utils/itemList";
+import { Shield } from "lucide-react";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const useCountUp = (end: number, duration: number = 2000) => {
   const [count, setCount] = useState(0);
@@ -50,10 +50,10 @@ function FeatureCard({
   description: string;
 }) {
   const coins = [
-    { top: '15%', left: '-20px', size: 'big', rotateOffset: 0 },
-    { top: '8%', left: '5%', size: 'small', rotateOffset: 45 },
-    { top: '50%', right: '-20px', size: 'big', rotateOffset: 90 },
-    { top: '65%', right: '3%', size: 'small', rotateOffset: 135 },
+    { top: "15%", left: "-20px", size: "big", rotateOffset: 0 },
+    { top: "8%", left: "5%", size: "small", rotateOffset: 45 },
+    { top: "50%", right: "-20px", size: "big", rotateOffset: 90 },
+    { top: "65%", right: "3%", size: "small", rotateOffset: 135 },
   ];
 
   return (
@@ -68,7 +68,7 @@ function FeatureCard({
               top: coin.top,
               left: coin.left,
               right: coin.right,
-              transformStyle: 'preserve-3d',
+              transformStyle: "preserve-3d",
             }}
             animate={{
               rotateX: [coin.rotateOffset, coin.rotateOffset + 360],
@@ -79,15 +79,15 @@ function FeatureCard({
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: "easeInOut",
               delay: i * 0.3,
             }}
           >
             <Image
               src={Coin}
               alt="Coin"
-              width={coin.size === 'big' ? 40 : 20}
-              height={coin.size === 'big' ? 40 : 20}
+              width={coin.size === "big" ? 40 : 20}
+              height={coin.size === "big" ? 40 : 20}
               className="drop-shadow-[0_0_15px_rgba(0,163,255,0.3)]"
             />
           </motion.div>
@@ -134,10 +134,10 @@ export default function Features() {
   useEffect(() => {
     const getValue = async () => {
       try {
-        const response = await fetch('/api/waitlist', {
-          method: 'GET',
+        const response = await fetch("/api/waitlist", {
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
@@ -164,7 +164,7 @@ export default function Features() {
         <div className="grid md:grid-cols-3 gap-0 container mx-auto">
           <StatItem
             title={waitlistValue?.toString()}
-            subtitle={'Members Waitlisted'}
+            subtitle={"Members Waitlisted"}
           />
           {Stats &&
             Stats.map((item, i) => (
