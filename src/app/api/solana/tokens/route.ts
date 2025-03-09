@@ -1,5 +1,5 @@
 import { getSolanaConnection, getUserTokens } from '@/lib/solana';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
 const requestSchema = z.object({
@@ -7,10 +7,14 @@ const requestSchema = z.object({
   rpcUrl: z.string().url(),
 });
 
-export async function POST(req: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { address, rpcUrl } = requestSchema.parse(body);
+    const params = req.nextUrl.searchParams;
+    const data = {
+      address: params.get('address'),
+      rpcUrl: params.get('rpcUrl'),
+    };
+    const { address, rpcUrl } = requestSchema.parse(data);
 
     const connection = await getSolanaConnection(rpcUrl);
     const tokens = await getUserTokens(connection, address);
