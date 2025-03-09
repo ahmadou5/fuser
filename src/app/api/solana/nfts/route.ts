@@ -1,6 +1,6 @@
-import { getUserNFTHoldings } from '@/lib/solana';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { getUserNFTHoldings } from "@/lib/solana";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const requestSchema = z.object({
   address: z.string(),
@@ -11,8 +11,8 @@ export async function GET(req: NextRequest) {
   try {
     const params = req.nextUrl.searchParams;
     const body = {
-      rpcUrl: params.get('rpcUrl'),
-      address: params.get('address'),
+      rpcUrl: params.get("rpcUrl"),
+      address: params.get("address"),
     };
     const { address, rpcUrl } = requestSchema.parse(body);
 
@@ -26,9 +26,9 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    console.error('NFTs fetch error:', error);
+    console.error("NFTs fetch error:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch NFTs' },
+      { error: "Failed to fetch NFTs" },
       { status: 500 }
     );
   }
