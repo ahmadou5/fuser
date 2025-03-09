@@ -1,14 +1,72 @@
-import { Metaplex } from '@metaplex-foundation/js';
-import { Connection, PublicKey } from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { Metaplex } from "@metaplex-foundation/js";
+import { Connection, PublicKey } from "@solana/web3.js";
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
+import {
+  DigitalAsset,
+  mplTokenMetadata,
+  TokenStandard,
+} from "@metaplex-foundation/mpl-token-metadata";
+import { fetchAllDigitalAssetByOwner } from "@metaplex-foundation/mpl-token-metadata";
+import { isSome, publicKey } from "@metaplex-foundation/umi";
+
+// Use the RPC endpoint of your choice.
 
 export async function getSolanaConnection(rpcUrl: string) {
-  return new Connection(rpcUrl, 'confirmed');
+  return new Connection(rpcUrl, "confirmed");
 }
 
 export async function getMetaplex(connection: Connection) {
   return new Metaplex(connection);
 }
+
+export const getUserNFTsHoldings = async (
+  rpcUrl: string,
+  userAddress: string
+): Promise<DigitalAsset[] | undefined> => {
+  try {
+    // Create Umi instance with the token metadata program
+    const umi = createUmi(rpcUrl).use(mplTokenMetadata());
+
+    // Convert user address to public key
+    const user = publicKey(userAddress);
+
+    // Fetch all digital assets owned by the user
+    const allAssets = await fetchAllDigitalAssetByOwner(umi, user);
+
+    // Filter to only include NFTs (Non-Fungible Tokens)
+    // NFTs typically have TokenStandard.NonFungible or TokenStandard.ProgrammableNonFungible
+    const nfts = allAssets.filter((asset) => {
+      const standardOption = asset.metadata.tokenStandard;
+
+      return (
+        isSome(standardOption) &&
+        ((standardOption.value === TokenStandard.NonFungible &&
+          standardOption.__option === "Some") ||
+          standardOption.value === TokenStandard.ProgrammableNonFungible)
+      );
+    });
+    // Before returning, serialize any BigInt values to prevent JSON serialization issues
+    return nfts;
+  } catch (error) {
+    console.error("Error fetching user NFTs:", error);
+    throw error; // Re-throw to allow proper error handling by the caller
+  }
+};
+
+export const getUserTokensHolds = async (
+  rpcUrl: string,
+  userAddress: string
+) => {
+  try {
+    const umi = createUmi(rpcUrl).use(mplTokenMetadata());
+    const user = publicKey(userAddress);
+    const assets = await fetchAllDigitalAssetByOwner(umi, user);
+    return assets;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export async function getUserNFTs(metaplex: Metaplex, userAddress: string) {
   try {
@@ -30,7 +88,7 @@ export async function getUserNFTs(metaplex: Metaplex, userAddress: string) {
             metadata,
           };
         } catch (error) {
-          console.error('Error fetching metadata:', error);
+          console.error("Error fetching metadata:", error);
 
           return {
             mint: nft.address.toString(),
@@ -42,7 +100,7 @@ export async function getUserNFTs(metaplex: Metaplex, userAddress: string) {
       })
     );
   } catch (error) {
-    console.error('Error fetching NFTs:', error);
+    console.error("Error fetching NFTs:", error);
     throw error;
   }
 }
@@ -70,7 +128,7 @@ export async function getUserTokens(
       };
     });
   } catch (error) {
-    console.error('Error fetching tokens:', error);
+    console.error("Error fetching tokens:", error);
     throw error;
   }
 }

@@ -7,11 +7,38 @@ import { Link } from "@/components/ui/link";
 import Toaster from "@/components/ui/Toaster";
 import * as motion from "motion/react-client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const getUserNFT = async () => {
+      try {
+        const response = await fetch("/api/solana/nfts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            rpc: "https://mainnet.helius-rpc.com/?api-key=e5fc821c-2b64-4d66-9d88-7cf162a5ffc8",
+            address: "BwY8CufbQMF7YPsPEfere1DhYPehTBPSpRJJKG2gTvDq",
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+        } else {
+          console.log(data);
+        }
+      } catch (err) {
+        console.error(err instanceof Error ? err.message : err);
+      }
+    };
+    getUserNFT();
+  }, []);
   return (
     <section className="relative py-20 lg:py-28">
       <motion.div
