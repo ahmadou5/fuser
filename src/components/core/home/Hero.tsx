@@ -1,44 +1,18 @@
-"use client";
+'use client';
 
-import BottomBlueLine from "@/assets/bottom-blue-line.svg";
-import HeroBg from "@/assets/hero-bg.svg";
-import TopBlueLine from "@/assets/top-blue-line.svg";
-import { Link } from "@/components/ui/link";
-import Toaster from "@/components/ui/Toaster";
-import * as motion from "motion/react-client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import BottomBlueLine from '@/assets/bottom-blue-line.svg';
+import HeroBg from '@/assets/hero-bg.svg';
+import TopBlueLine from '@/assets/top-blue-line.svg';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/components/ui/link';
+import Toaster from '@/components/ui/Toaster';
+import * as motion from 'motion/react-client';
+import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Hero() {
   const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    const getUserNFT = async () => {
-      try {
-        const response = await fetch("/api/solana/nfts", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            rpc: "https://mainnet.helius-rpc.com/?api-key=e5fc821c-2b64-4d66-9d88-7cf162a5ffc8",
-            address: "BwY8CufbQMF7YPsPEfere1DhYPehTBPSpRJJKG2gTvDq",
-          }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-        } else {
-          console.log(data);
-        }
-      } catch (err) {
-        console.error(err instanceof Error ? err.message : err);
-      }
-    };
-    getUserNFT();
-  }, []);
   return (
     <section className="relative py-20 lg:py-28">
       <motion.div
@@ -53,13 +27,13 @@ export default function Hero() {
               Your Asset <span className="text-primary">Guardian</span> Angel
             </h1>
             <p className="text-lg text-gray-400 mb-8">
-              A secured multichain{" "}
+              A secured multichain{' '}
               <span className="text-primary font-bold">MPC</span> wallet. simply
               create a seedless and recoverable non-custodial wallet
             </p>
             <div className="flex flex-wrap gap-4">
               <Button
-                size={"lg"}
+                size={'lg'}
                 shine
                 type="button"
                 onClick={() => setIsToastOpen(true)}

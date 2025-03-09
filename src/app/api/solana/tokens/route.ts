@@ -1,23 +1,23 @@
-import { getUserTokensHolds } from "@/lib/solana";
-import { NextResponse } from "next/server";
-import { z } from "zod";
+import { getUserTokenHoldings } from '@/lib/solana';
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
 const requestSchema = z.object({
   address: z.string(),
   rpcUrl: z.string().url(),
 });
 
-export async function POST(req: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const body = await req.json();
+    const params = req.nextUrl.searchParams;
+    const body = {
+      rpcUrl: params.get('rpcUrl'),
+      address: params.get('address'),
+    };
     const { rpcUrl, address } = requestSchema.parse(body);
-    const tokens = await getUserTokensHolds(rpcUrl, address);
-    const serializedTokens = JSON.parse(
-      JSON.stringify(tokens, (key, value) =>
-        typeof value === "bigint" ? value.toString() : value
-      )
-    );
-    return NextResponse.json({ tokens: serializedTokens });
+
+    const tokens = await getUserTokenHoldings(rpcUrl, address);
+    return NextResponse.json({ tokens });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -26,9 +26,9 @@ export async function POST(req: Request) {
       );
     }
 
-    console.error("Tokens fetch error:", error);
+    console.error('Tokens fetch error:', error);
     return NextResponse.json(
-      { error: "Failed to fetch tokens" },
+      { error: 'Failed to fetch tokens' },
       { status: 500 }
     );
   }

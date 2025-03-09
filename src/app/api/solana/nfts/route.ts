@@ -1,25 +1,23 @@
-import { getMetaplex, getSolanaConnection, getUserNFTs } from "@/lib/solana";
-import { NextResponse } from "next/server";
-import { z } from "zod";
+import { getUserNFTHoldings } from '@/lib/solana';
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
 const requestSchema = z.object({
   address: z.string(),
   rpcUrl: z.string().url(),
 });
 
-export async function POST(req: Request) {
+export async function GET(req: NextRequest) {
   try {
-    const body = await req.json();
+    const params = req.nextUrl.searchParams;
+    const body = {
+      rpcUrl: params.get('rpcUrl'),
+      address: params.get('address'),
+    };
     const { address, rpcUrl } = requestSchema.parse(body);
-    const connection = await getSolanaConnection(rpcUrl);
-    const metaplex = await getMetaplex(connection);
-    const nfts = await getUserNFTs(metaplex, address);
-    const serializedNfts = JSON.parse(
-      JSON.stringify(nfts, (key, value) =>
-        typeof value === "bigint" ? value.toString() : value
-      )
-    );
-    return NextResponse.json({ nfts: serializedNfts });
+
+    const nfts = await getUserNFTHoldings(rpcUrl, address);
+    return NextResponse.json({ nfts });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -28,9 +26,9 @@ export async function POST(req: Request) {
       );
     }
 
-    console.error("NFTs fetch error:", error);
+    console.error('NFTs fetch error:', error);
     return NextResponse.json(
-      { error: "Failed to fetch NFTs" },
+      { error: 'Failed to fetch NFTs' },
       { status: 500 }
     );
   }
