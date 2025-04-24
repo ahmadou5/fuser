@@ -15,11 +15,14 @@ async function getTokenMetadata(origin: string, mint: string, rpcUrl: string) {
     const data = await response.json();
     console.log("token", data);
     return {
-      name: data?.name || data?.json?.name || "Unknown Token",
+      name: data?.name || data?.json?.name || "Unknown NFT",
       symbol: data.symbol || "???",
       uri: data.uri || null,
       image: data.image || data.json?.image || null,
       attribute: data?.json?.attributes || null,
+      description: data?.json?.description || null,
+      external_url: data?.json?.external_url || null,
+      collection: data?.json?.collection || null,
     };
   } catch (error) {
     console.error("Error fetching token metadata:", error);
@@ -57,7 +60,7 @@ export async function GET(req: NextRequest) {
       tokenAccounts.value
         .filter(
           (account) =>
-            account.account.data.parsed.info.tokenAmount.decimals === 0
+            account.account.data.parsed.info.tokenAmount.decimals <= 1
         )
         .map(async (account) => {
           const mint = account.account.data.parsed.info.mint;
@@ -66,11 +69,14 @@ export async function GET(req: NextRequest) {
             mint,
             amount: account.account.data.parsed.info.tokenAmount.uiAmount,
             decimals: account.account.data.parsed.info.tokenAmount.decimals,
-            name: metadata?.name || "Unknown Token",
+            name: metadata?.name || "Unknown NFT",
             symbol: metadata?.symbol || "???",
             uri: metadata?.uri || null,
             image: metadata?.image || null,
             attribute: metadata?.attribute || null,
+            description: metadata?.description || null,
+            external_url: metadata?.external_url || null,
+            collection: metadata?.collection || null,
           };
         })
     );
