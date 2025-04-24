@@ -26,6 +26,43 @@ async function getTokenMetadata(origin: string, mint: string, rpcUrl: string) {
   }
 }
 
+// Known token addresses and their metadata
+const KNOWN_TOKENS: {
+  [key: string]: { name: string; symbol: string; image: string };
+} = {
+  Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB: {
+    name: "Tether USD",
+    symbol: "USDT",
+    image: "https://cryptologos.cc/logos/tether-usdt-logo.png",
+  },
+  EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v: {
+    name: "USD Coin",
+    symbol: "USDC",
+    image: "https://cryptologos.cc/logos/usd-coin-usdc-logo.png",
+  },
+  So11111111111111111111111111111111111111112: {
+    name: "Wrapped SOL",
+    symbol: "SOL",
+    image: "https://cryptologos.cc/logos/solana-sol-logo.png",
+  },
+  mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So: {
+    name: "mSOL",
+    symbol: "mSOL",
+    image: "https://cryptologos.cc/logos/msol-logo.png",
+  },
+  DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263: {
+    name: "BONK",
+    symbol: "BONK",
+    image: "https://cryptologos.cc/logos/bonk-bonk-logo.png",
+  },
+  PAWSxhjTyNJELywYiYTxCN857utnYmWXu7Q59Vgn6ZQ: {
+    name: "PAWS",
+    symbol: "PAWS",
+    image:
+      "https://api.phantom.app/image-proxy/?image=https%3A%2F%2Fcoin-images.coingecko.com%2Fcoins%2Fimages%2F54865%2Flarge%2Fpaws.jpg%3F1742193676&anim=true&fit=cover&width=128&height=128",
+  },
+};
+
 export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
   const origin = req.nextUrl.origin;
@@ -52,7 +89,18 @@ export async function GET(req: NextRequest) {
       { programId: TOKEN_PROGRAM_ID }
     );
 
-    const tokens = await Promise.all(
+    interface UpdatedTokenType {
+      mint: string;
+      amount: number;
+      decimals: number;
+      name: string;
+      symbol: string;
+      uri: string | null;
+      image: string | null;
+    }
+    const tokens: UpdatedTokenType[] = [];
+
+    const Tokens = await Promise.all(
       tokenAccounts.value
         .filter(
           (account) =>
@@ -61,8 +109,23 @@ export async function GET(req: NextRequest) {
         )
         .map(async (account) => {
           const mint = account.account.data.parsed.info.mint;
+
+          // Check if the mint address is in the known tokens list
+          if (KNOWN_TOKENS[mint]) {
+            const { name, symbol, image } = KNOWN_TOKENS[mint];
+            tokens.push({
+              mint,
+              amount: account.account.data.parsed.info.tokenAmount.uiAmount,
+              decimals: account.account.data.parsed.info.tokenAmount.decimals,
+              name: name,
+              symbol: symbol,
+              uri: null,
+              image: image,
+            });
+            return;
+          }
           const metadata = await getTokenMetadata(origin, mint, rpcUrl);
-          return {
+          tokens.push({
             mint,
             amount: account.account.data.parsed.info.tokenAmount.uiAmount,
             decimals: account.account.data.parsed.info.tokenAmount.decimals,
@@ -70,11 +133,14 @@ export async function GET(req: NextRequest) {
             symbol: metadata?.symbol || "???",
             uri: metadata?.uri || null,
             image: metadata?.image || null,
-          };
+          });
+          // If the mint address is in the known tokens list, use that data
         })
     );
 
-    return NextResponse.json({ tokens });
+    console.log("tokens", Tokens);
+
+    return NextResponse.json({ tokens }, { status: 200 });
   } catch (error: unknown) {
     if (error instanceof Error)
       console.error("Error fetching token accounts:", error.message);
