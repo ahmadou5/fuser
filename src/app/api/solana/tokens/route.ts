@@ -34,7 +34,7 @@ const KNOWN_TOKENS: {
     name: "Tether USD",
     symbol: "USDT",
     image:
-      "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB/logo.svg",
+      "https://assets.coingecko.com/coins/images/325/standard/Tether.png?1696501661",
   },
   EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v: {
     name: "USD Coin",
