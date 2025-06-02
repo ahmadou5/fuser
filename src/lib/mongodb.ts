@@ -6,7 +6,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 const MONGODB_URI = process.env.MONGODB_URI;
-
+const MONGODB_URI2 = process.env.MONGODB_URI2 || MONGODB_URI;
 let cached = (global as any).mongoose;
 
 if (!cached) {
@@ -21,6 +21,29 @@ export async function connectToDatabase() {
   if (!cached.promise) {
     cached.promise = mongoose
       .connect(MONGODB_URI, { timeoutMS: 40000 })
+      .then((mongoose) => {
+        return mongoose;
+      });
+  }
+
+  try {
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
+  }
+
+  return cached.conn;
+}
+
+export async function connectTo2Database() {
+  if (cached.conn) {
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    cached.promise = mongoose
+      .connect(MONGODB_URI2, { timeoutMS: 40000 })
       .then((mongoose) => {
         return mongoose;
       });
