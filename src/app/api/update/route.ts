@@ -15,6 +15,21 @@ const ProfileSchema = z.object({
   profilePicture: z.string().optional(),
 });
 
+export async function GET(req: Request) {
+  try {
+    const params = new URL(req.url).searchParams;
+    const email = params.get("email");
+
+    return NextResponse.json({ message: `Hello ${email} ` }, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch profile" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
