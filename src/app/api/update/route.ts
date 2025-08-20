@@ -22,7 +22,8 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ message: `Hello ${email} ` }, { status: 200 });
   } catch (error) {
-    console.error("Error fetching profile:", error);
+    if (error instanceof Error)
+      console.error("Error fetching profile:", error.message);
     return NextResponse.json(
       { error: "Failed to fetch profile" },
       { status: 500 }
@@ -40,18 +41,39 @@ export async function POST(req: Request) {
     // Connect to database
     await connectTo2Database();
 
-    // Update user info in the db
-    const updatedEntry = await ProfileEntry.findOneAndUpdate({
+    // Check if profile exists
+    const existingProfile = await ProfileEntry.findOne({
       email: validatedData.email,
-      validatedData,
     });
+
+    let result;
+
+    if (existingProfile) {
+      // Update existing profile
+      result = await ProfileEntry.findOneAndUpdate(
+        { email: validatedData.email },
+        {
+          ...validatedData,
+          updatedAt: new Date(),
+        },
+        {
+          new: true, // Return updated document
+          runValidators: true, // Run schema validators
+        }
+      );
+    } else {
+      // Create new profile
+      result = await ProfileEntry.create(validatedData);
+    }
 
     return NextResponse.json(
       {
-        message: `Successfully Update user : ${validatedData.email}`,
-        updatedEntry,
+        message: existingProfile
+          ? `Successfully updated profile for: ${validatedData.email}`
+          : `Successfully created profile for: ${validatedData.email}`,
+        profile: result,
       },
-      { status: 201 }
+      { status: existingProfile ? 200 : 201 }
     );
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -62,9 +84,7 @@ export async function POST(req: Request) {
     }
 
     console.error("Waitlist error:", error);
-    return NextResponse.json(
-      { error: "Failed to join waitlist" },
-      { status: 500 }
-    );
+    if (error instanceof Error)
+      return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
