@@ -13,7 +13,7 @@ export const useThemeStore = create<ThemeStore>()(
   persist(
     (set) => ({
       // Initial state
-      themeMode: "system",
+      themeMode: "dark",
       setThemeMode: (themeMode: ThemeMode) => set({ themeMode }),
     }),
     {

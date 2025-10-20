@@ -12,6 +12,9 @@ import Swap from "@/assets/swap.svg";
 import Send from "@/assets/send.svg";
 import NFT from "@/assets/nft.svg";
 import AppLogo from "@/assets/splash.png";
+import intro from "@/assets/intro.svg";
+import onboard from "@/assets/onboard.svg";
+import sent from "@/assets/sent.svg";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 interface socialItem {
   name: string;
@@ -254,7 +257,7 @@ interface BlogContent {
 export const mockBlogPost: BlogPostDetail[] = [
   {
     id: "0",
-    title: "Introducing InFuse Wallet Mobile App V1.0.0",
+    title: "Introducing InFuse Wallet V1.0.0",
     excerpt:
       "We are excited to announce the launch of InFuse Wallet Mobile App V1.0.0, bringing a new era of secure and user-friendly crypto asset management to your fingertips.",
     author: {
@@ -268,22 +271,308 @@ export const mockBlogPost: BlogPostDetail[] = [
     date: "Oct 18, 2025",
     readTime: "4 min read",
     difficulty: "Beginner",
-    coverImage:
-      "https://images.unsplash.com/photo-1508385082359-f2f2d6b5e3f3?w=1200&h=600&fit=crop",
+    coverImage: intro,
     content: [
       {
         type: "text",
         content:
-          "We are excited to announce the launch of InFuse Wallet Mobile App V1.0.0, bringing a new era of user-friendly crypto asset management to your fingertips.",
+          "We are excited to announce the launch of InFuse Wallet Mobile App V1.0.0, bringing a new era of secure and user-friendly crypto asset management to your fingertips.",
       },
       {
         type: "text",
         content:
-          "With this release, we have focused on enhancing the user experience, and expanding our multi-SVM support to provide a seamless and reliable wallet solution for the whole solana users.",
+          "With this release, we have focused on enhancing the user experience and expanding our multi-SVM support to provide a seamless and reliable wallet solution for the entire Solana ecosystem.",
       },
       {
         type: "text",
-        content: "",
+        content:
+          "Learn more about how we're making crypto simple—so anyone can manage their digital assets like a pro.",
+      },
+      {
+        type: "heading",
+        content: "Why choose InFuse Wallet?",
+        level: 2,
+      },
+      {
+        type: "text",
+        content:
+          "InFuse Wallet isn't just another crypto wallet. We've built it from the ground up to be intuitive, secure, and powerful enough for both beginners and experienced users.",
+      },
+      {
+        type: "text",
+        content: "Here's what makes InFuse special:",
+      },
+      {
+        type: "list",
+        content: [
+          "Multi-SVM support: Seamlessly interact with multiple Solana Virtual Machine (SVM) chains, giving you access to a broader ecosystem of tokens and dApps.",
+          "Military-grade security: Your private keys are encrypted and stored securely on your device. We never have access to your funds.",
+          "Lightning-fast transactions: Experience near-instant transaction confirmations powered by Solana's high-performance blockchain.",
+          "Clean, intuitive interface: Manage all your crypto assets in one place with a beautiful, easy-to-navigate design.",
+          "Built for mobile: Trade, send, and receive tokens anywhere, anytime—right from your pocket.",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Key features in V1.0.0",
+        level: 2,
+      },
+      {
+        type: "list",
+        content: [
+          "Multi-wallet support: Create and manage multiple wallets within a single app.",
+          "Token discovery: Easily discover and add SPL tokens to your wallet.",
+          "Transaction history: View your complete transaction history with detailed information.",
+          "QR code scanning: Send tokens by simply scanning a QR code.",
+          "Address book: Save frequently used addresses for quick access.",
+          "Biometric authentication: Secure your wallet with fingerprint or face recognition.",
+          "Real-time price tracking: Monitor token prices and portfolio value in real-time.",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Getting started with InFuse Wallet",
+        level: 2,
+      },
+      {
+        type: "text",
+        content:
+          "Setting up your InFuse Wallet is quick and easy. Here's how to get started:",
+      },
+      {
+        type: "heading",
+        content: "Create your wallet",
+        level: 3,
+      },
+      {
+        type: "list",
+        content: [
+          "Download InFuse Wallet from the App Store or Google Play Store.",
+          "Open the app and tap 'Create New Wallet' to generate a new wallet.",
+          "Write down your recovery phrase (12 or 24 words) and store it somewhere safe. This is the ONLY way to recover your wallet if you lose access.",
+          "Verify your recovery phrase by entering the words in the correct order.",
+          "Set up biometric authentication for quick and secure access.",
+        ],
+      },
+      {
+        type: "image",
+        content: onboard,
+        caption: "Create your wallet in just a few taps",
+      },
+      {
+        type: "heading",
+        content: "Fund your wallet",
+        level: 3,
+      },
+      {
+        type: "text",
+        content:
+          "Before you can send tokens, you'll need to add some funds to your wallet. There are several ways to do this:",
+      },
+      {
+        type: "list",
+        content: [
+          "Receive from another wallet: Tap 'Receive' on your home screen, copy your wallet address or share your QR code, and have someone send tokens to your address.",
+          "Buy with fiat: Use our integrated on-ramp partners to purchase SOL or other tokens with your credit card or bank transfer.",
+          "Import existing wallet: If you already have a Solana wallet, you can import it using your recovery phrase or private key.",
+        ],
+      },
+      {
+        type: "heading",
+        content: "How to send tokens",
+        level: 2,
+      },
+      {
+        type: "text",
+        content:
+          "Sending tokens with InFuse Wallet is simple and secure. Follow these steps:",
+      },
+      {
+        type: "heading",
+        content: "Step 1: Select the token",
+        level: 3,
+      },
+      {
+        type: "text",
+        content:
+          "From your home screen, tap on the token you want to send. This will open the token detail page showing your balance and recent transactions.",
+      },
+      {
+        type: "heading",
+        content: "Step 2: Initiate the transfer",
+        level: 3,
+      },
+      {
+        type: "list",
+        content: [
+          "Tap the 'Send' button at the bottom of the screen.",
+          "Enter the recipient's wallet address, or tap the QR code icon to scan their address.",
+          "You can also select an address from your saved contacts in the address book.",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Step 3: Enter the amount",
+        level: 3,
+      },
+      {
+        type: "list",
+        content: [
+          "Type in the amount you want to send, or tap 'Max' to send your entire balance.",
+          "The app will automatically calculate the network fee (typically a fraction of a cent on Solana).",
+          "Review the total amount including fees to ensure everything is correct.",
+        ],
+      },
+      {
+        type: "image",
+        content: sent,
+        caption: "Send tokens with just a few taps",
+      },
+      {
+        type: "heading",
+        content: "Step 4: Review and confirm",
+        level: 3,
+      },
+      {
+        type: "list",
+        content: [
+          "Double-check the recipient address—crypto transactions are irreversible!",
+          "Verify the amount and network fee.",
+          "Tap 'Confirm' to proceed with the transaction.",
+          "Authenticate with your biometric (fingerprint or face ID) or PIN.",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Step 5: Track your transaction",
+        level: 3,
+      },
+      {
+        type: "text",
+        content:
+          "Once confirmed, your transaction will be broadcast to the Solana network. You can track its status in real-time from the transaction history page. Most transactions confirm within seconds!",
+      },
+      {
+        type: "heading",
+        content: "Pro tips for sending tokens",
+        level: 2,
+      },
+      {
+        type: "list",
+        content: [
+          "Always double-check addresses: Copy-paste errors or typos can result in lost funds. Use the QR code scanner when possible.",
+          "Start with a small test transaction: If sending a large amount to a new address, send a small test amount first to verify the address is correct.",
+          "Save frequent contacts: Use the address book feature to save addresses you send to regularly.",
+          "Keep some SOL for fees: Make sure you always have a small amount of SOL in your wallet to pay for transaction fees.",
+          "Verify token contracts: When adding custom tokens, verify the token contract address on official sources to avoid scams.",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Security best practices",
+        level: 2,
+      },
+      {
+        type: "text",
+        content:
+          "Your security is our top priority. Follow these guidelines to keep your assets safe:",
+      },
+      {
+        type: "list",
+        content: [
+          "Never share your recovery phrase: InFuse will NEVER ask for your recovery phrase. Anyone asking for it is trying to steal your funds.",
+          "Store your recovery phrase offline: Write it down on paper and store it in a secure location. Never store it digitally or in the cloud.",
+          "Enable biometric authentication: This adds an extra layer of security and makes accessing your wallet more convenient.",
+          "Keep your app updated: Always use the latest version of InFuse Wallet to benefit from security improvements and new features.",
+          "Be cautious of phishing: Only download InFuse Wallet from official app stores. Watch out for fake websites and apps.",
+          "Use multiple wallets: Consider creating separate wallets for different purposes (e.g., one for savings, one for daily use).",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Troubleshooting common issues",
+        level: 2,
+      },
+      {
+        type: "text",
+        content: "Running into problems? Here are solutions to common issues:",
+      },
+      {
+        type: "list",
+        content: [
+          "Transaction pending: Solana transactions usually confirm within seconds. If your transaction is stuck, try refreshing the app or checking Solana network status.",
+          "Insufficient funds for fee: Make sure you have enough SOL to cover the transaction fee (usually around 0.000005 SOL).",
+          "Token not showing: If a token isn't appearing in your wallet, try manually adding it by searching for its contract address.",
+          "Can't connect to network: Check your internet connection and try switching between WiFi and mobile data.",
+        ],
+      },
+      {
+        type: "heading",
+        content: "What's next?",
+        level: 2,
+      },
+      {
+        type: "text",
+        content:
+          "This is just the beginning for InFuse Wallet. We're committed to continuously improving the app and adding new features based on your feedback.",
+      },
+      {
+        type: "text",
+        content: "Coming soon:",
+      },
+      {
+        type: "list",
+        content: [
+          "NFT gallery and marketplace integration",
+          "In-app staking for supported tokens",
+          "DApp browser for seamless access to Solana dApps",
+          "Multi-language support",
+          "Advanced portfolio analytics",
+          "Hardware wallet integration",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Join the InFuse community",
+        level: 2,
+      },
+      {
+        type: "text",
+        content:
+          "We'd love to hear from you! Share your feedback, report bugs, or suggest new features:",
+      },
+      {
+        type: "list",
+        content: [
+          "Follow us on X (Twitter) @InFuseWallet",
+          "Join our Discord community",
+          "Visit our website at infusewallet.com",
+          "Email us at support@infusewallet.com",
+        ],
+      },
+      {
+        type: "heading",
+        content: "Resources",
+        level: 2,
+      },
+      {
+        type: "text",
+        content:
+          "New to crypto or need more help? Check out these helpful resources:",
+      },
+      {
+        type: "list",
+        content: [
+          "Getting started with InFuse Wallet",
+          "How to keep your crypto safe",
+          "Understanding Solana and SPL tokens",
+          "Frequently Asked Questions",
+        ],
+      },
+      {
+        type: "quote",
+        content:
+          "Important: Never share your recovery phrase or private keys with anyone. InFuse Wallet will never ask for this information. Always verify you're using the official InFuse Wallet app from trusted sources.",
       },
     ],
     featured: true,
