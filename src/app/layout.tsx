@@ -6,6 +6,8 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ToastProvider } from "@/providers/ToastProvider";
 
 const inter = Montserrat({ subsets: ["latin"], weight: "400" });
 
@@ -23,16 +25,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased relative`}>
-        <SplashScreen />
-        <LightRipples className="inset-0 right-10 h-full w-full -z-10" />
+        <ToastProvider>
+          <ThemeProvider>
+            <SplashScreen />
+            <LightRipples className="inset-0 right-10 h-full w-full -z-10" />
 
-        <header>
-          <Navbar />
-        </header>
-        {children}
+            <header>
+              <Navbar />
+            </header>
+            {children}
 
-        <Footer />
-        <Analytics />
+            <Footer />
+            <Analytics />
+          </ThemeProvider>
+        </ToastProvider>
       </body>
     </html>
   );

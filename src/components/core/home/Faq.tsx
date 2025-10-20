@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import BottomBlueLine from '@/assets/bottom-blue-line.svg';
-import { CustomAccordion } from '@/components/ui/custom-accordion';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
-import { faqs } from '@/utils/itemList';
+import BottomBlueLine from "@/assets/bottom-blue-line.svg";
+import { CustomAccordion } from "@/components/ui/custom-accordion";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import { faqs } from "@/utils/itemList";
 
 export default function FAQ() {
   return (
@@ -18,7 +18,7 @@ export default function FAQ() {
             viewport={{ once: false }}
             className="mb-12"
           >
-            <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-[#00A3FF] max-w-lg">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-[#0A7EA4] max-w-lg">
               Frequently Asked Questions
             </h2>
             <p className="mt-2 text-lg lg:text-xl">
@@ -38,7 +38,7 @@ export default function FAQ() {
       </div>
 
       <div
-        className={`absolute hidden lg:block lg:left-0 lg:top-[15rem] w-fit h-fit -z-10`}
+        className={`absolute hidden lg:block lg:left-0 lg:top-[18rem] w-fit h-fit -z-10`}
       >
         <Image src={BottomBlueLine} alt="Bottom Blue Line" />
       </div>

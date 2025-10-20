@@ -4,7 +4,31 @@ import { BadgeCheck } from "lucide-react";
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import { reviews } from "@/utils/itemList";
+import InfiniteReviewsScroller from "@/components/ui/reviewScroller";
+import { useMediaQuery } from "@/hook/useMediaQuery";
 
+const allReviews = [
+  {
+    id: 1,
+    component: <ReviewCard {...reviews[0]} />,
+  },
+  {
+    id: 2,
+    component: <ReviewCard {...reviews[1]} />,
+  },
+  {
+    id: 3,
+    component: <ReviewCard {...reviews[2]} />,
+  },
+];
+
+const extendedReveiew = [
+  ...allReviews,
+  ...allReviews,
+  ...allReviews,
+  ...allReviews,
+  ...allReviews,
+];
 function ReviewCard({
   avatar,
   name,
@@ -18,31 +42,37 @@ function ReviewCard({
   content: string;
   verified?: boolean;
 }) {
+  const mobileBreakpoint = 768;
+  const isMobile = useMediaQuery(`(max-width: ${mobileBreakpoint}px)`);
   return (
     <div
-      className="relative p-6 rounded-xl bg-[#1A1B1E]/40 border border-[#00A3FF]/10 backdrop-blur-sm
+      className={`py-5 px-4 w-[290px] h-[170px] lg:p-6 lg:w-[600px] lg:h-[190px] ml-4 mr-4 rounded-xl bg-[#1A1B1E]/0 border border-primary/50 backdrop-blur-sm
       before:absolute before:inset-0 before:rounded-xl before:pointer-events-none
       before:bg-gradient-to-b before:from-transparent before:to-transparent
-      before:border before:border-[#00A3FF]/10 before:shadow-[0_0_25px_rgba(0,163,255,0.1)]"
+      before:border before:border-[#00A3FF]/10 before:shadow-[0_0_25px_rgba(0,163,255,0.1)]`}
     >
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-4">
           <Image
             src={avatar || "/placeholder.svg"}
             alt={name}
-            width={48}
-            height={48}
+            width={isMobile ? 26 : 48}
+            height={isMobile ? 26 : 48}
             className="rounded-full"
           />
           <div>
             <div className="flex items-center gap-1">
-              <h3 className="font-medium">{name}</h3>
-              {verified && <BadgeCheck className="w-4 h-4 text-[#00A3FF]" />}
+              <h3 className="font-medium lg:text-base text-xs">{name}</h3>
+              {verified && (
+                <BadgeCheck className="lg:w-4 lg:h-4 h-3 w-3 text-[#00A3FF]" />
+              )}
             </div>
-            <p className="text-gray-400 text-sm">{handle}</p>
+            <p className="text-gray-400 lg:text-sm text-xs">{handle}</p>
           </div>
         </div>
-        <p className="text-gray-300 text-sm whitespace-pre-line">{content}</p>
+        <p className="text-gray-300 lg:text-base text-xs whitespace-pre-line">
+          {content}
+        </p>
       </div>
     </div>
   );
@@ -59,29 +89,17 @@ export default function Reviews() {
           viewport={{ once: false }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#00A3FF]">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#0A7EA4]">
             Reviews
           </h2>
-          <div className="inline-block px-4 py-2 rounded-lg bg-[#1A1B1E]/60 backdrop-blur-sm">
-            <p className="text-gray-400 text-sm">
+          <div className="inline-block px-4 py-2 rounded-lg border border-primary/20 bg-[#1A1B1E]/60 backdrop-blur-sm ">
+            <p className="text-gray-400 lg:text-sm text-xs">
               What people are saying about InFuse wallet.
             </p>
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {reviews.map((review, index) => (
-            <motion.div
-              key={review.handle}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: false }}
-            >
-              <ReviewCard {...review} />
-            </motion.div>
-          ))}
-        </div>
+        <InfiniteReviewsScroller reviews={extendedReveiew} />
       </div>
     </section>
   );

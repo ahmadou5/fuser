@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import BottomBlueLine from '@/assets/bottom-blue-line.svg';
-import HeroBg from '@/assets/hero-bg.svg';
-import TopBlueLine from '@/assets/top-blue-line.svg';
-import { Button } from '@/components/ui/button';
-import { Link } from '@/components/ui/link';
-import Toaster from '@/components/ui/Toaster';
-import * as motion from 'motion/react-client';
-import Image from 'next/image';
-import { useState } from 'react';
+import BottomBlueLine from "@/assets/bottom-blue-line.svg";
+import HeroBg from "@/assets/hero-bg.svg";
+import TopBlueLine from "@/assets/top-blue-line.svg";
+import QRButton from "@/components/ui/QRButton";
+import { Download } from "lucide-react";
+
+import Toaster from "@/components/ui/Toaster";
+import * as motion from "motion/react-client";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function Hero() {
   const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
@@ -27,23 +28,23 @@ export default function Hero() {
               Your Asset <span className="text-primary">Guardian</span> Angel
             </h1>
             <p className="text-lg text-gray-400 mb-8">
-              A secured multichain{' '}
+              A secured Multi-SVM{" "}
               <span className="text-primary font-bold">MPC</span> wallet. simply
               create a seedless and recoverable non-custodial wallet
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button
-                size={'lg'}
-                shine
-                type="button"
-                onClick={() => setIsToastOpen(true)}
-              >
-                Download App
-              </Button>
-              {/* TODO: Update download link */}
-              <Link href="/waitlist" size="lg" variant="outline" shine>
-                Join The Waitlist
-              </Link>
+              <QRButton
+                qrCodeUrl="https://expo.dev/artifacts/eas/uA88mAw6H1eHU2ip6pXjZp.apk"
+                shine={true}
+                buttonText="Download App"
+                downloadLinks={[
+                  {
+                    label: "Download APK",
+                    url: "https://expo.dev/artifacts/eas/uA88mAw6H1eHU2ip6pXjZp.apk",
+                    icon: <Download />,
+                  },
+                ]}
+              />
             </div>
           </div>
           <motion.div

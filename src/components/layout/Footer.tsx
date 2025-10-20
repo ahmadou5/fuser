@@ -1,9 +1,14 @@
-import FooterLogo from "@/assets/footer-logo.svg";
+"use client";
+import BlueLogo from "@/assets/footer-logo.svg";
+import WhiteLogo from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
+import { useThemeStore } from "@/store/themeStore";
 import Image from "next/image";
 import Link from "next/link";
-import { Socials } from "@/utils/itemList";
 export default function Footer() {
+  const { themeMode } = useThemeStore();
+
+  const Logo = themeMode === "dark" ? WhiteLogo : BlueLogo;
   return (
     <footer className="relative">
       <div
@@ -15,22 +20,16 @@ export default function Footer() {
 
       <div className="container px-4 py-8 mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          {/* Logo and Copyright */}
           <div className="flex flex-col gap-2">
             <Link href="/" className="flex items-center gap-2">
-              <Image
-                src={FooterLogo}
-                alt="InFuse Wallet"
-                width={100}
-                height={100}
-              />
+              <Image src={Logo} alt="InFuse Wallet" width={100} height={100} />
             </Link>
             <p className="text-sm text-gray-400">
-              Copyright ©{new Date().getFullYear()} InFuse Wallet
+              © {new Date().getFullYear()} InFuse Wallet. All rights reserved.
             </p>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links
           <div className="flex flex-col items-start md:items-center gap-2 lg:gap-4">
             <h3 className="text-sm font-medium">Socials</h3>
             <div className="flex items-center gap-3">
@@ -47,7 +46,7 @@ export default function Footer() {
                   </Link>
                 ))}
             </div>
-          </div>
+          </div>  */}
 
           {/* Contact */}
           <div className="flex flex-col items-start md:items-end gap-2 lg:gap-4">

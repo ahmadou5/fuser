@@ -1,8 +1,9 @@
 "use client";
 
-import NavLogo from "@/assets/logo.svg";
-import { Button } from "@/components/ui/button";
-import { Link as CustomLink } from "@/components/ui/link";
+import WhiteLogo from "@/assets/logo.svg";
+import BlueLogo from "@/assets/footer-logo.svg";
+//import { Button } from "@/components/ui/button";
+//import { Link as CustomLink } from "@/components/ui/link";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
@@ -10,17 +11,24 @@ import * as motion from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+//import { ThemeToggle } from "../ui/themeToggle";
+import { useThemeStore } from "@/store/themeStore";
+import { ThemeToggle } from "../ui/themeToggle";
 
 const navLinks = [
-  { href: "#", label: "Community" },
-  { href: "#", label: "Support" },
+  { href: "/#community", label: "Community" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/blog", label: "Blog" },
+  { href: "/download", label: "Download" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const { themeMode } = useThemeStore();
+
+  const Logo = themeMode === "dark" ? WhiteLogo : BlueLogo;
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 5);
@@ -43,7 +51,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold text-white">
-            <Image src={NavLogo} height={230} width={89} alt="logo" />
+            <Image src={Logo} height={230} width={89} alt="logo" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -59,17 +67,11 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
+            <div className="hidden md:flex lg:flex">
+              <ThemeToggle />
+            </div>
           </div>
 
-          <CustomLink
-            href="https://t.me/InFuseSolanabot"
-            className="hidden md:block"
-            shine
-          >
-            Access Wallet
-          </CustomLink>
-
-          {/* Mobile Menu Button */}
           <button
             className="rounded-lg p-2 text-gray-300 hover:bg-white/5 md:hidden"
             onClick={() => setIsOpen(!isOpen)}
@@ -89,7 +91,7 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
               className="md:hidden"
             >
-              <div className="flex flex-col gap-4 pt-4">
+              <div className="flex flex-col w-auto gap-4 pt-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.label}
@@ -100,13 +102,9 @@ export default function Navbar() {
                     {link.label}
                   </Link>
                 ))}
-                <Button
-                  variant="secondary"
-                  className="bg-[#0095FF] text-white hover:bg-[#0095FF]/90"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Access Wallet
-                </Button>
+                <div>
+                  <ThemeToggle />
+                </div>
               </div>
             </motion.div>
           )}
