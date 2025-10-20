@@ -121,7 +121,7 @@ export const BlogPostDetailPage = ({
   mockBlogPost: BlogPostDetail;
 }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  //const [activeSection, setActiveSection] = useState("");
 
   const tableOfContents: TableOfContentsItem[] = mockBlogPost.content
     .filter((item) => item.type === "heading")
@@ -258,7 +258,7 @@ export const BlogPostDetailPage = ({
             <aside className="hidden lg:block">
               <TableOfContents
                 items={tableOfContents}
-                activeId={activeSection}
+                activeId={mockBlogPost.id}
               />
             </aside>
           </div>
