@@ -15,6 +15,10 @@ import AppLogo from "@/assets/splash.png";
 import intro from "@/assets/intro.svg";
 import onboard from "@/assets/onboard.svg";
 import sent from "@/assets/sent.svg";
+import confirm from "@/assets/confirm.svg";
+import amount from "@/assets/amount.svg";
+import select from "@/assets/select.svg";
+import tap from "@/assets/tap.svg";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 interface socialItem {
   name: string;
@@ -306,7 +310,7 @@ export const mockBlogPost: BlogPostDetail[] = [
         type: "list",
         content: [
           "Multi-SVM support: Seamlessly interact with multiple Solana Virtual Machine (SVM) chains, giving you access to a broader ecosystem of tokens and dApps.",
-          "Military-grade security: Your private keys are encrypted and stored securely on your device. We never have access to your funds.",
+
           "Lightning-fast transactions: Experience near-instant transaction confirmations powered by Solana's high-performance blockchain.",
           "Clean, intuitive interface: Manage all your crypto assets in one place with a beautiful, easy-to-navigate design.",
           "Built for mobile: Trade, send, and receive tokens anywhere, anytime—right from your pocket.",
@@ -388,6 +392,11 @@ export const mockBlogPost: BlogPostDetail[] = [
           "Sending tokens with InFuse Wallet is simple and secure. Follow these steps:",
       },
       {
+        type: "image",
+        content: sent,
+        caption: "Learn how to send tokens with InFuse Wallet",
+      },
+      {
         type: "heading",
         content: "Step 1: Select the token",
         level: 3,
@@ -395,7 +404,12 @@ export const mockBlogPost: BlogPostDetail[] = [
       {
         type: "text",
         content:
-          "From your home screen, tap on the token you want to send. This will open the token detail page showing your balance and recent transactions.",
+          "From your home screen, tap on the token you want to send. This will open the token detail page.",
+      },
+      {
+        type: "image",
+        content: select,
+        caption: "Select a token to send",
       },
       {
         type: "heading",
@@ -405,10 +419,15 @@ export const mockBlogPost: BlogPostDetail[] = [
       {
         type: "list",
         content: [
-          "Tap the 'Send' button at the bottom of the screen.",
+          "Tap the 'Send' icon at the bottom of the screen.",
           "Enter the recipient's wallet address, or tap the QR code icon to scan their address.",
           "You can also select an address from your saved contacts in the address book.",
         ],
+      },
+      {
+        type: "image",
+        content: tap,
+        caption: "Click the send button and enter receipient address",
       },
       {
         type: "heading",
@@ -425,8 +444,8 @@ export const mockBlogPost: BlogPostDetail[] = [
       },
       {
         type: "image",
-        content: sent,
-        caption: "Send tokens with just a few taps",
+        content: amount,
+        caption: "Enter token amount to send",
       },
       {
         type: "heading",
@@ -439,8 +458,12 @@ export const mockBlogPost: BlogPostDetail[] = [
           "Double-check the recipient address—crypto transactions are irreversible!",
           "Verify the amount and network fee.",
           "Tap 'Confirm' to proceed with the transaction.",
-          "Authenticate with your biometric (fingerprint or face ID) or PIN.",
         ],
+      },
+      {
+        type: "image",
+        content: confirm,
+        caption: "Review the Transaction and then confirm it.",
       },
       {
         type: "heading",
@@ -450,7 +473,7 @@ export const mockBlogPost: BlogPostDetail[] = [
       {
         type: "text",
         content:
-          "Once confirmed, your transaction will be broadcast to the Solana network. You can track its status in real-time from the transaction history page. Most transactions confirm within seconds!",
+          "Once confirmed, your transaction will be broadcast to the Solana network. You can track its status in real-time from the solana transaction explorer. Most transactions confirm within seconds!",
       },
       {
         type: "heading",
@@ -464,7 +487,6 @@ export const mockBlogPost: BlogPostDetail[] = [
           "Start with a small test transaction: If sending a large amount to a new address, send a small test amount first to verify the address is correct.",
           "Save frequent contacts: Use the address book feature to save addresses you send to regularly.",
           "Keep some SOL for fees: Make sure you always have a small amount of SOL in your wallet to pay for transaction fees.",
-          "Verify token contracts: When adding custom tokens, verify the token contract address on official sources to avoid scams.",
         ],
       },
       {
@@ -480,12 +502,9 @@ export const mockBlogPost: BlogPostDetail[] = [
       {
         type: "list",
         content: [
-          "Never share your recovery phrase: InFuse will NEVER ask for your recovery phrase. Anyone asking for it is trying to steal your funds.",
-          "Store your recovery phrase offline: Write it down on paper and store it in a secure location. Never store it digitally or in the cloud.",
           "Enable biometric authentication: This adds an extra layer of security and makes accessing your wallet more convenient.",
           "Keep your app updated: Always use the latest version of InFuse Wallet to benefit from security improvements and new features.",
           "Be cautious of phishing: Only download InFuse Wallet from official app stores. Watch out for fake websites and apps.",
-          "Use multiple wallets: Consider creating separate wallets for different purposes (e.g., one for savings, one for daily use).",
         ],
       },
       {
@@ -502,7 +521,6 @@ export const mockBlogPost: BlogPostDetail[] = [
         content: [
           "Transaction pending: Solana transactions usually confirm within seconds. If your transaction is stuck, try refreshing the app or checking Solana network status.",
           "Insufficient funds for fee: Make sure you have enough SOL to cover the transaction fee (usually around 0.000005 SOL).",
-          "Token not showing: If a token isn't appearing in your wallet, try manually adding it by searching for its contract address.",
           "Can't connect to network: Check your internet connection and try switching between WiFi and mobile data.",
         ],
       },

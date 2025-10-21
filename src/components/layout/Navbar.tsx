@@ -13,7 +13,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 //import { ThemeToggle } from "../ui/themeToggle";
 import { useThemeStore } from "@/store/themeStore";
-import { ThemeToggle } from "../ui/themeToggle";
 
 const navLinks = [
   { href: "/#community", label: "Community" },
@@ -67,9 +66,9 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-            <div className="hidden md:flex lg:flex">
+            {/**  <div className="hidden md:flex lg:flex">
               <ThemeToggle />
-            </div>
+            </div> */}
           </div>
 
           <button
@@ -102,9 +101,9 @@ export default function Navbar() {
                     {link.label}
                   </Link>
                 ))}
-                <div>
+                {/** <div>
                   <ThemeToggle />
-                </div>
+                </div> */}
               </div>
             </motion.div>
           )}

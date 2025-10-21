@@ -1,17 +1,55 @@
-// /constants/colors.ts (Or just keep it inside your hook file for simplicity)
+const tintColorLight = "#0a7ea4";
+const tintColorDark = "#fff";
+
 export const Colors = {
   light: {
     text: "#11181C",
     background: "#fff",
-    // ... all light colors
+    backgroundSecondary: "#f5f5f5",
+    backgroundTertiary: "#e5e5e5",
+    tint: tintColorLight,
+    icon: "#687076",
+    tabIconDefault: "#687076",
+    tabIconSelected: tintColorLight,
+    border: "#e1e5e9",
+    borderSecondary: "#d1d5db",
+    card: "#ffffff",
+    cardLow: "rgba(255, 255, 255, 0.8)", // 85% opacity,
+    cardSecondary: "#f9fafb",
     primary: "#0a7ea4",
+    primaryLight: "#3b9dd1",
+    secondary: "#6b7280",
+    success: "#10b981",
+    warning: "#f59e0b",
+    error: "#ef4444",
+    placeholder: "#9ca3af",
+    surface: "#f8fafc",
+    surfaceSecondary: "#f1f5f9",
     overlay: "rgba(0, 0, 0, 0.5)",
   },
   dark: {
     text: "#ECEDEE",
     background: "#0d0c10",
-    // ... all dark colors
+    backgroundSecondary: "#1a1a1a",
+    backgroundTertiary: "#2a2a2a",
+    tint: tintColorDark,
+    icon: "#9BA1A6",
+    tabIconDefault: "#9BA1A6",
+    tabIconSelected: tintColorDark,
+    border: "#2a2a2a",
+    borderSecondary: "#3a3a3a",
+    card: "#151718",
+    cardLow: "rgba(21, 23, 24, 0.8)", // 85% opacity'
+    cardSecondary: "#1f1f23",
     primary: "#0a7ea4",
+    primaryLight: "#3b9dd1",
+    secondary: "#6b7280",
+    success: "#10b981",
+    warning: "#f59e0b",
+    error: "#ef4444",
+    placeholder: "#6b7280",
+    surface: "#1a1a1a",
+    surfaceSecondary: "#2a2a2a",
     overlay: "rgba(0, 0, 0, 0.7)",
   },
 } as const; // Use 'as const' for better type inference
