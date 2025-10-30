@@ -34,13 +34,13 @@ export default function Hero() {
             </p>
             <div className="flex flex-wrap gap-4">
               <QRButton
-                qrCodeUrl="https://github.com/Infusewallet/native-app/releases/download/v1.0.0-beta/application-1ab745e4-5c7c-4363-9b06-cb863e04a52a.apk"
+                qrCodeUrl="https://expo.dev/artifacts/eas/4ikPpWWaXKPUpkiUnL8erU.apk"
                 shine={true}
                 buttonText="Download App"
                 downloadLinks={[
                   {
                     label: "Download APK",
-                    url: "https://github.com/Infusewallet/native-app/releases/download/v1.0.0-beta/application-1ab745e4-5c7c-4363-9b06-cb863e04a52a.apk",
+                    url: "https://expo.dev/artifacts/eas/4ikPpWWaXKPUpkiUnL8erU.apk",
                     icon: <Download />,
                   },
                 ]}

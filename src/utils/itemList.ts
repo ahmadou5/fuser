@@ -639,8 +639,7 @@ export const appData: AppData = {
     "Internet capital market at your fingertips",
   ],
   categories: ["#1 top free in finance", "Crypto"],
-  downloadLink:
-    "https://github.com/Infusewallet/native-app/releases/download/v1.0.0-beta/application-1ab745e4-5c7c-4363-9b06-cb863e04a52a.apk",
+  downloadLink: "https://expo.dev/artifacts/eas/4ikPpWWaXKPUpkiUnL8erU.apk",
   lastUpdated: "Oct 15, 2025",
   version: "1.0.0",
   whatsNew:
