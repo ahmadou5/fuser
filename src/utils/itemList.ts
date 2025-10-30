@@ -629,7 +629,7 @@ export const appData: AppData = {
   size: "201 MB",
   ageRating: "13+",
   description:
-    "Create a secure solana wallet with your email account, Hodl, store assets &  up to 18% p.a. on savings. InFuse Wallet offers seamless digital banking experience with no hidden fees, instant transfers, and best-in-class savings rates.",
+    "Create a secure solana wallet with your email account, Hodl, store assets &  stake and earn higher APY`s on InFuse Wallet .",
   shortDescription: "Fast account opening, instant alerts & high savings rates",
   screenshots: ["1", "2", "3", "4", "5"],
   features: [
@@ -639,7 +639,8 @@ export const appData: AppData = {
     "Internet capital market at your fingertips",
   ],
   categories: ["#1 top free in finance", "Crypto"],
-  downloadLink: "https://expo.dev/artifacts/eas/uA88mAw6H1eHU2ip6pXjZp.apk",
+  downloadLink:
+    "https://github.com/Infusewallet/native-app/releases/download/v1.0.0-beta/application-1ab745e4-5c7c-4363-9b06-cb863e04a52a.apk",
   lastUpdated: "Oct 15, 2025",
   version: "1.0.0",
   whatsNew:
@@ -668,7 +669,8 @@ export const versions: AppData[] = [
       "Internet capital market at your fingertips",
     ],
     categories: ["#1 top free in finance", "Crypto", "Wallet"],
-    downloadLink: "https://expo.dev/artifacts/eas/uA88mAw6H1eHU2ip6pXjZp.apk",
+    downloadLink:
+      "https://github.com/Infusewallet/native-app/releases/download/v1.0.0-beta/application-1ab745e4-5c7c-4363-9b06-cb863e04a52a.apk",
     lastUpdated: "Oct 15, 2025",
     version: "1.0.0",
     whatsNew:
